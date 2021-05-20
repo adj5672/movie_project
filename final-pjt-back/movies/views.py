@@ -13,8 +13,9 @@ def seeding(request):
         serializer = MovieSerializers(data=movie_info)
         if serializer.is_valid(raise_exception=True):
             movie = serializer.save()
-            movie.id = movie_info['id']
             for genre in movie_info['genre_ids']:
                 movie.genres.add(genre)
+            movie.id = movie_info['id']
             movie.save()
-    return Response('성공적으로 가져왔습니다.')
+    return Response('성공적으로 db에 저장')
+
