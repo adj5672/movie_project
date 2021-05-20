@@ -12,7 +12,7 @@ class Movie(models.Model):
     overview = models.TextField(blank=True)
     release_date = models.DateField()
     popularity = models.FloatField()
-    poster_path = models.CharField(max_length=200)
+    poster_path = models.CharField(max_length=200, blank=True, null=True)
     vote_count = models.IntegerField()
     vote_average = models.FloatField()
     genres = models.ManyToManyField(Genre)
