@@ -46,6 +46,7 @@ def genre(request, genre_id):
 @api_view(['GET',])
 def tags(request, feeling):
     movies = Movie.objects.annotate(
+        # count : 달린 리뷰 갯수
         count = Count("review__tags"),
         count1 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='기쁨')),
         count2 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='슬픔')),
@@ -53,6 +54,7 @@ def tags(request, feeling):
         count4 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='심심')),
         count5 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='사랑'))
     ).filter(
+        # 리뷰가 최소 1개 이상
         Q(count__gt=0) &
         Q(count1__gte=0) &
         Q(count2__gte=0) &
