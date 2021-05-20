@@ -10,6 +10,8 @@ urlpatterns = [
     path('popularity/', views.movie_popularity),
     # 장르별 random 영화 10개
     path('genre/<int:genre_id>/', views.genre),
+    # 기분 Tag
+    path('tag/<feeling>/', views.tags),
 ]
 
 # 인기순 top 10

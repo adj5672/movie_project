@@ -5,7 +5,9 @@ from rest_framework.response import Response
 from .serializers import MovieSerializers
 import requests
 from .models import Movie
-import random
+from django.db.models import Max, F, Case, When, Count, Q
+
+from movies import serializers
 
 API_KEY = '28d059b233996387ca26ecda76d580cb'
 
@@ -41,9 +43,22 @@ def genre(request, genre_id):
     serializer = MovieSerializers(movies, many=True)
     return Response(serializer.data)
 
-    # for movie in movies:
-    #     if genre_id in movie.genre_ids:
-
-
-
-
+@api_view(['GET',])
+def tags(request, feeling):
+    movies = Movie.objects.annotate(
+        count = Count("review__tags"),
+        count1 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='기쁨')),
+        count2 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='슬픔')),
+        count3 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='짜증')),
+        count4 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='심심')),
+        count5 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='사랑'))
+    ).filter(
+        Q(count__gt=0) &
+        Q(count1__gte=0) &
+        Q(count2__gte=0) &
+        Q(count3__gte=0) &
+        Q(count4__gte=0) &
+        Q(count5__gte=0) 
+    )
+    serializers = MovieSerializers(movies, many=True)
+    return Response(serializers.data)
