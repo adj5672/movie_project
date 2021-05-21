@@ -18,11 +18,14 @@
         </div>
       </div>
       <hr>
-      <h1>리뷰 작성</h1>
-      <CreateReview/>
-      <hr>
-      <h1>전체 리뷰 조회</h1>
-      <Review v-for="(review, idx) in reviews" :review="review" :key="idx"/>
+      <div v-if="$store.state.isLogin">
+        <h1>리뷰 작성</h1>
+        <CreateReview/>
+        <hr>
+        <h1>전체 리뷰 조회</h1>
+        <Review v-for="(review, idx) in reviews" :review="review" :key="idx"/>
+      </div>
+      <h2 v-else>로그인을 해야 리뷰를 작성, 조회 할 수 있습니다.</h2>
     </div>
   </el-dialog>
 </template>
