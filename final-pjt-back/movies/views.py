@@ -1,13 +1,8 @@
-<<<<<<< HEAD
 from django.shortcuts import get_list_or_404
-=======
-from django.shortcuts import render, get_list_or_404, get_object_or_404
->>>>>>> d632be3f8aca9018672256335977aa3109de1f65
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import MovieSerializers
-from community.serializers import ReviewListSerializer
 import requests
 from .models import Movie
 from django.db.models import Count, Q
