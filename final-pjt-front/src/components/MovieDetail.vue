@@ -23,7 +23,7 @@
       <CreateReview/>
       <hr>
       <h1>전체 리뷰 조회</h1>
-      <Review/>
+      <Review v-for="(review, idx) in reviews" :review="review" :key="idx"/>
     </div>
   </el-dialog>
 </template>
@@ -38,17 +38,15 @@ export default {
     CreateReview,
     Review,
   },
-  data: function () {
-    return {
-      reviews: [],
-    }
-  },
   computed: {
     movie: function () {
       return this.$store.state.selectedMovie
     },
     posterSrc: function () {
       return 'https://image.tmdb.org/t/p/w500' + this.movie.poster_path
+    },
+    reviews: function () {
+      return this.$store.state.reviews
     }
   },
 }

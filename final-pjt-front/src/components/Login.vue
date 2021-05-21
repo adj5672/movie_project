@@ -35,6 +35,10 @@ export default {
         .then(res => {
           localStorage.setItem('jwt', res.data.token)
           this.$store.state.isLogin = true
+          const token = res.data.token
+          this.$store.state.config = {
+            Authorization: `JWT ${token}`
+          }
           this.$emit('close-drawer')
         })
         .catch(err => {

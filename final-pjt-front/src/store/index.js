@@ -19,6 +19,7 @@ export default new Vuex.Store({
     centerDialogVisible: false,
     selectedMovie : {},
     reviews: [],
+    config: null,
   },
   mutations: {
     POPULARITY: function (state, movies) {
@@ -42,9 +43,11 @@ export default new Vuex.Store({
     TAGS: function (state, movies) {
       state.movies.tag_movies = movies
     },
-    SELECT_MOVIE: function (state, data) {
-      state.selectedMovie = data[0]
-      state.reviews = data[1]
+    SELECT_MOVIE: function (state, movie) {
+      state.selectedMovie = movie
+    },
+    GET_REVIEWS: function (state, reviews) {
+      state.reviews = reviews
     } 
   },
   actions: {
@@ -124,10 +127,19 @@ export default new Vuex.Store({
     },
 
     selectMovie: function (context, movie) {
+      context.commit('SELECT_MOVIE', movie)
+    },
+    
+    getReviews: function (context) {
       const reviewUrl = `http://127.0.0.1:8000/community/${movie.id}`
-      axios.get(reviewUrl)
+      axios({
+        method: 'get',
+        url: reviewUrl,
+        headers: context.state.config
+      })
         .then(res => {
-          context.commit('SELECT_MOVIE', [movie, res.data])
+          console.log(res)
+          context.commit('GET_REVIEWS', res.data)
         })
         .catch(err => {
           console.log(err)

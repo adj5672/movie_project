@@ -43,6 +43,7 @@ export default {
       this.$store.state.isLogin = false
       localStorage.removeItem('jwt')
       this.drawer = false
+      this.$store.state.config = null
     }
   },
 }

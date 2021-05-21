@@ -42,10 +42,17 @@ export default {
       axios({
         method: 'post',
         url: `http://127.0.0.1:8000/community/${this.$store.state.selectedMovie.id}/`,
-        data: this.form
+        data: this.form,
+        headers: this.$store.state.config
       })
-        .then(res => {
-          console.log(res)
+        .then(() => {
+          this.form = {
+          rank: 0,
+          tags: '기쁨',
+          title: null,
+          content: null,
+          }
+        this.$store.dispatch('getReviews')
         })
         .catch(err => {
           console.log(err)
