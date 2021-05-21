@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_list_or_404
+from django.shortcuts import render, get_list_or_404, get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import MovieSerializers
+from community.serializers import ReviewListSerializer
 import requests
 from .models import Movie
 import random
@@ -41,9 +42,35 @@ def genre(request, genre_id):
     serializer = MovieSerializers(movies, many=True)
     return Response(serializer.data)
 
-    # for movie in movies:
-    #     if genre_id in movie.genre_ids:
+# 태그에 포함된 영화 10개 정보
+@api_view(['GET', ])
+def tags(request, movie_id):
+    movies = Movie.objects.all()
+    reviews = movies.review_set.all()
+    
+    tags = {
+        '기쁨': 0,
+        '슬픔': 0,
+        '짜증': 0,
+        '심심': 0,
+        '사랑': 0,
+    }
+    for review in reviews:
+        for tag in tags:
+            if tag == review.tags:
+                tags[tag] += 1
+    
+    MAX = 0
+    for tag in tags:
+        if tags[tag] > MAX:
+            max_tag = tag
+            MAX = tags[tag]
+    
+    print(tags)
 
-
+    serializer = ReviewListSerializer(reviews, many=True)
+    return Response(serializer.data)
+    
+    
 
 

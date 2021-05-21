@@ -10,11 +10,12 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class ReviewSerializer(serializers.ModelSerializer):
     comment_set = CommentSerializer(many=True, read_only=True)
+    
 
     class Meta:
         model = Review
         fields = '__all__'
-        read_only_fields = ('movie', 'user')
+        read_only_fields = ('movie', 'user',)
 
 class ReviewListSerializer(serializers.ModelSerializer):
     
@@ -26,5 +27,5 @@ class ReviewListSerializer(serializers.ModelSerializer):
 class CommentListSerializer(serializers.ModelSerializer):
 
     class Meta:
-        modele = Comment
+        model = Comment
         fields = '__all__'
