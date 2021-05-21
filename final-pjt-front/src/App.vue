@@ -1,24 +1,30 @@
 <template>
-  <div id="app">
-    <div id="nav" class="border border-dark">
-      <router-link :to="{ name: 'AllMovies' }">전체영화</router-link> |
-      <router-link :to="{ name: 'RecommandMovies' }">추천영화</router-link> | 
-      <router-link :to="{ name: 'Signup' }" v-if="!this.$store.state.isLogin">회원가입</router-link>
-      <SideBar/>
+  <w-app>
+    <div id="app">
+      <div id="nav">
+        <router-link :to="{ name: 'AllMovies' }">전체영화</router-link> |
+        <router-link :to="{ name: 'RecommandMovies' }">추천영화</router-link> | 
+        <router-link :to="{ name: 'Signup' }" v-if="!this.$store.state.isLogin">회원가입</router-link>
+        <SideBar/>
+      </div>
+      <router-view/>
+      <MovieDetail/>
     </div>
-    <router-view/>
-  </div>
+  </w-app>
 </template>
 
 <script>
 import SideBar from '@/views/SideBar'
+import MovieDetail from '@/components/MovieDetail'
 
 export default {
   name: 'App',
   components: {
     SideBar,
+    MovieDetail
   },
   created: function () {
+    this.$store.dispatch('getAllMovies')
     const token = localStorage.getItem('jwt')
     if (token) {
       this.$store.state.isLogin = true
