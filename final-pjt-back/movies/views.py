@@ -39,7 +39,7 @@ def movie_popularity(request):
 @api_view(['GET', ])
 def detail(request, movie_id):
     movie = get_object_or_404(Movie, id=movie_id)
-    tags = movie.review_set.all().aggregate(
+    tags = movie.review_set.aggregate(
         기쁨 = Count("tags", filter=Q(tags="기쁨")),
         슬픔 = Count("tags", filter=Q(tags="슬픔")),
         짜증 = Count("tags", filter=Q(tags="짜증")),
