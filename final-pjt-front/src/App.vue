@@ -1,6 +1,6 @@
 <template>
-  <w-app>
-    <div id="app">
+  <div id="app">
+    <w-app>
       <div id="nav">
         <router-link :to="{ name: 'AllMovies' }">전체영화</router-link> |
         <router-link :to="{ name: 'RecommandMovies' }">추천영화</router-link> | 
@@ -9,8 +9,8 @@
       </div>
       <router-view/>
       <MovieDetail/>
-    </div>
-  </w-app>
+    </w-app>
+  </div>
 </template>
 
 <script>
@@ -27,10 +27,7 @@ export default {
     this.$store.dispatch('getAllMovies')
     const token = localStorage.getItem('jwt')
     if (token) {
-      this.$store.state.isLogin = true
-      this.$store.state.config = {
-        Authorization: `JWT ${token}`
-      }
+      this.$store.dispatch('logIn', token)
     }
   }
 }

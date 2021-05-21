@@ -40,10 +40,9 @@ export default {
   },
   methods: {
     logout: function () {
-      this.$store.state.isLogin = false
-      localStorage.removeItem('jwt')
       this.drawer = false
-      this.$store.state.config = null
+      localStorage.removeItem('jwt')
+      this.$store.dispatch('logOut')
     }
   },
 }

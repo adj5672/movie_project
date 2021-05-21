@@ -22,6 +22,7 @@ export default new Vuex.Store({
     config: {},
   },
   mutations: {
+    // 각 장르의 추천 영화 정보
     POPULARITY: function (state, movies) {
       state.movies.popularity = movies
     }, 
@@ -48,11 +49,24 @@ export default new Vuex.Store({
     },
     GET_REVIEWS: function (state, reviews) {
       state.reviews = reviews
-    } 
+    },
+
+    // 로그인 및 로그아웃
+    LOGIN: function (state, token) {
+      state.isLogin = true
+      state.config = {
+        Authorization: `JWT ${token}`
+      }
+    },
+    LOGOUT: function (state) {
+      state.isLogin = false
+      state.config = null
+    }
   },
   actions: {
+    // 전체 영화 정보
     getAllMovies: function (context) {
-
+      
       // Top 10
       const popularityUrl = 'http://127.0.0.1:8000/movies/popularity/'
       axios.get(popularityUrl)
@@ -62,7 +76,7 @@ export default new Vuex.Store({
         .catch(err => {
           console.log(err)
         })
-        
+
       // Romance
       const romanceUrl = 'http://127.0.0.1:8000/movies/genre/10749/'
       axios.get(romanceUrl)
@@ -114,6 +128,7 @@ export default new Vuex.Store({
         })
     },
 
+    // 추천 영화 정보
     getTagMovies: function (context, tag) {
       console.log(context, tag)
       const tagUrl = `http://127.0.0.1:8000/movies/tag/${tag}`
@@ -126,12 +141,13 @@ export default new Vuex.Store({
         })      
     },
 
+    // 상세정보를 확인할 영화 선택
     selectMovie: function (context, movie) {
       context.commit('SELECT_MOVIE', movie)
+      context.dispatch('getReviews')
     },
-    
+    // 상세 영화의 리뷰들 
     getReviews: function (context) {
-      console.log(context.state)
       const reviewUrl = `http://127.0.0.1:8000/community/${context.state.selectedMovie.id}`
       axios({
         method: 'get',
@@ -139,12 +155,19 @@ export default new Vuex.Store({
         headers: context.state.config
       })
         .then(res => {
-          console.log(res)
           context.commit('GET_REVIEWS', res.data)
         })
         .catch(err => {
           console.log(err)
         })
+    },
+
+    // 로그인 및 로그아웃
+    logIn: function (context, token) {
+      context.commit('LOGIN', token)
+    },
+    logOut: function (context) {
+      context.commit('LOGOUT')
     }
   },
   modules: {
