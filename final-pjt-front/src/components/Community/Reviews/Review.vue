@@ -1,5 +1,6 @@
 <template>
   <div>
+    <span>{{ review.tags }}</span>
     <p>{{ review.title }}</p>
   </div>
 </template>

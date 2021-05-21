@@ -6,6 +6,7 @@ from .serializers import MovieSerializers
 import requests
 from .models import Movie
 from django.db.models import Count, Q
+from django.db.models.aggregates import Max
 
 API_KEY = '28d059b233996387ca26ecda76d580cb'
 
@@ -38,8 +39,19 @@ def movie_popularity(request):
 @api_view(['GET', ])
 def detail(request, movie_id):
     movie = get_object_or_404(Movie, id=movie_id)
-    serializer = MovieSerializers(movie)
-    return Response(serializer.data)
+    tags = movie.review_set.all().aggregate(
+        기쁨 = Count("tags", filter=Q(tags="기쁨")),
+        슬픔 = Count("tags", filter=Q(tags="슬픔")),
+        짜증 = Count("tags", filter=Q(tags="짜증")),
+        심심 = Count("tags", filter=Q(tags="심심")),
+        사랑 = Count("tags", filter=Q(tags="사랑"))
+    )
+    sorted_tags = sorted(tags.items(), key=lambda x: x[1], reverse=True)
+    data = {
+        "most_tag": sorted_tags[0][0],
+        "tag_count": sorted_tags[0][1],
+    }
+    return Response(data)
 
 @api_view(['GET',])
 def genre(request, genre_id):
