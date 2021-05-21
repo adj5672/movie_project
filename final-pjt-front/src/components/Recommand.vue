@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     tagMovies: function () {
-      return this.$store.state.tag_movies
+      return this.$store.state.movies.tag_movies
     }
   }
 }

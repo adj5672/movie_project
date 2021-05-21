@@ -14,7 +14,7 @@ export default {
   name: 'Action',
   computed: {
     action: function () {
-      return this.$store.state.action
+      return this.$store.state.movies.action
     }
   }
 }

@@ -14,7 +14,7 @@ export default {
   name: 'Horror',
   computed: {
     horror: function () {
-      return this.$store.state.horror
+      return this.$store.state.movies.horror
     }
   }
 }

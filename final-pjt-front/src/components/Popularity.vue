@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     popularity: function () {
-      return this.$store.state.popularity
+      return this.$store.state.movies.popularity
     }
   }
 }

@@ -6,35 +6,38 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    popularity: [],
-    romance: [],
-    action: [],
-    fantasy: [],
-    horror: [],
-    comedy: [],
-    tag_movies: [],
+    movies: {
+      popularity: [],
+      romance: [],
+      action: [],
+      fantasy: [],
+      horror: [],
+      comedy: [],
+      tag_movies: [],
+    },
+    isLogin: false,
   },
   mutations: {
     POPULARITY: function (state, movies) {
-      state.popularity = movies
+      state.movies.popularity = movies
     }, 
     ROMANCE: function (state, movies) {
-      state.romance = movies
+      state.movies.romance = movies
     }, 
     ACTION: function (state, movies) {
-      state.action = movies
+      state.movies.action = movies
     }, 
     FANTASY: function (state, movies) {
-      state.fantasy = movies
+      state.movies.fantasy = movies
     }, 
     HORROR: function (state, movies) {
-      state.horror = movies
+      state.movies.horror = movies
     }, 
     COMEDY: function (state, movies) {
-      state.comedy = movies
+      state.movies.comedy = movies
     },
     TAGS: function (state, movies) {
-      state.tag_movies = movies
+      state.movies.tag_movies = movies
     } 
   },
   actions: {
