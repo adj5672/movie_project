@@ -11,7 +11,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'wave-ui/dist/wave-ui.css'
 
-
 Vue.config.productionTip = false
 
 Vue.use(WaveUI)
@@ -20,7 +19,12 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(Carousel3d)
 
+const waveui = new WaveUI({
+  // Some Wave UI options.
+})
+
 new Vue({
+  waveui,
   router,
   store,
   render: h => h(App)
