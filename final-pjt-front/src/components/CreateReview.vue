@@ -45,14 +45,15 @@ export default {
         data: this.form,
         headers: this.$store.state.config
       })
-        .then(() => {
+        .then(res => {
+          console.log(res)
+          this.$store.dispatch('getReviews')
           this.form = {
           rank: 0,
           tags: '기쁨',
           title: null,
           content: null,
           }
-        this.$store.dispatch('getReviews')
         })
         .catch(err => {
           console.log(err)

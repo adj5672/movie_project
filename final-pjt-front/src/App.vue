@@ -28,6 +28,9 @@ export default {
     const token = localStorage.getItem('jwt')
     if (token) {
       this.$store.state.isLogin = true
+      this.$store.state.config = {
+        Authorization: `JWT ${token}`
+      }
     }
   }
 }

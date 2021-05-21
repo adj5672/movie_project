@@ -19,7 +19,7 @@ export default new Vuex.Store({
     centerDialogVisible: false,
     selectedMovie : {},
     reviews: [],
-    config: null,
+    config: {},
   },
   mutations: {
     POPULARITY: function (state, movies) {
@@ -131,7 +131,8 @@ export default new Vuex.Store({
     },
     
     getReviews: function (context) {
-      const reviewUrl = `http://127.0.0.1:8000/community/${movie.id}`
+      console.log(context.state)
+      const reviewUrl = `http://127.0.0.1:8000/community/${context.state.selectedMovie.id}`
       axios({
         method: 'get',
         url: reviewUrl,
