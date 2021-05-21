@@ -130,7 +130,6 @@ export default new Vuex.Store({
 
     // 추천 영화 정보
     getTagMovies: function (context, tag) {
-      console.log(context, tag)
       const tagUrl = `http://127.0.0.1:8000/movies/tag/${tag}`
       axios.get(tagUrl)
         .then(res => {
