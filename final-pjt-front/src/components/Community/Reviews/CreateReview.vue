@@ -45,8 +45,7 @@ export default {
         data: this.form,
         headers: this.$store.state.config
       })
-        .then(res => {
-          console.log(res)
+        .then(() => {
           this.$store.dispatch('getReviews')
         })
         .catch(err => {

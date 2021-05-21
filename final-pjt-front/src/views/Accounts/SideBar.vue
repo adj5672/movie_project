@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
-      <span v-if="!this.$store.state.isLogin">로그인</span>
+      <span v-if="!$store.state.isLogin">로그인</span>
       <span v-else>개인정보</span>
     </el-button>
 
@@ -9,7 +9,7 @@
       title="I am the title"
       :visible.sync="drawer"
       :with-header="false"
-      v-if="!this.$store.state.isLogin">
+      v-if="!$store.state.isLogin">
       <h2 class="my-3">로그인</h2>
       <Login @close-drawer="drawer = false"/>
     </el-drawer>
