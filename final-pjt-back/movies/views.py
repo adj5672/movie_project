@@ -1,13 +1,11 @@
-from django.shortcuts import render, get_list_or_404
+from django.shortcuts import get_list_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import MovieSerializers
 import requests
 from .models import Movie
-from django.db.models import Max, F, Case, When, Count, Q
-
-from movies import serializers
+from django.db.models import Count, Q
 
 API_KEY = '28d059b233996387ca26ecda76d580cb'
 
@@ -46,21 +44,19 @@ def genre(request, genre_id):
 @api_view(['GET',])
 def tags(request, feeling):
     movies = Movie.objects.annotate(
-        # count : 달린 리뷰 갯수
-        count = Count("review__tags"),
-        count1 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='기쁨')),
-        count2 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='슬픔')),
-        count3 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='짜증')),
-        count4 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='심심')),
-        count5 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='사랑'))
+        # review_count : 달린 리뷰 갯수
+        review_count = Count("review__tags"),
+        happy = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='기쁨')),
+        sad = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='슬픔')),
+        irritation = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='짜증')),
+        boring = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='심심')),
+        love = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='사랑'))
     ).filter(
         # 리뷰가 최소 1개 이상
-        Q(count__gt=0) &
-        Q(count1__gte=0) &
-        Q(count2__gte=0) &
-        Q(count3__gte=0) &
-        Q(count4__gte=0) &
-        Q(count5__gte=0) 
+        Q(review_count__gt=0) &
+        # 각 감정 tag와 갯수 비교 
+        Q(happy__gte=0) & Q(sad__gte=0) & Q(irritation__gte=0) & Q(boring__gte=0) & Q(love__gte=0) 
     )
+
     serializers = MovieSerializers(movies, many=True)
     return Response(serializers.data)
