@@ -13,6 +13,3 @@ urlpatterns = [
     # 기분 Tag
     path('tag/<feeling>/', views.tags),
 ]
-
-# 인기순 top 10
-# fix된 장르 n개, random한 영화 10개??
