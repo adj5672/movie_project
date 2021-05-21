@@ -6,7 +6,9 @@ from .serializers import MovieSerializers
 from community.serializers import ReviewListSerializer
 import requests
 from .models import Movie
-import random
+from django.db.models import Max, F, Case, When, Count, Q
+
+from movies import serializers
 
 API_KEY = '28d059b233996387ca26ecda76d580cb'
 
@@ -42,35 +44,24 @@ def genre(request, genre_id):
     serializer = MovieSerializers(movies, many=True)
     return Response(serializer.data)
 
-# 태그에 포함된 영화 10개 정보
-@api_view(['GET', ])
-def tags(request, movie_id):
-    movies = Movie.objects.all()
-    reviews = movies.review_set.all()
-    
-    tags = {
-        '기쁨': 0,
-        '슬픔': 0,
-        '짜증': 0,
-        '심심': 0,
-        '사랑': 0,
-    }
-    for review in reviews:
-        for tag in tags:
-            if tag == review.tags:
-                tags[tag] += 1
-    
-    MAX = 0
-    for tag in tags:
-        if tags[tag] > MAX:
-            max_tag = tag
-            MAX = tags[tag]
-    
-    print(tags)
-
-    serializer = ReviewListSerializer(reviews, many=True)
-    return Response(serializer.data)
-    
-    
-
-
+@api_view(['GET',])
+def tags(request, feeling):
+    movies = Movie.objects.annotate(
+        # count : 달린 리뷰 갯수
+        count = Count("review__tags"),
+        count1 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='기쁨')),
+        count2 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='슬픔')),
+        count3 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='짜증')),
+        count4 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='심심')),
+        count5 = Count("review__tags", filter=Q(review__tags=feeling)) - Count("review__tags", filter=Q(review__tags='사랑'))
+    ).filter(
+        # 리뷰가 최소 1개 이상
+        Q(count__gt=0) &
+        Q(count1__gte=0) &
+        Q(count2__gte=0) &
+        Q(count3__gte=0) &
+        Q(count4__gte=0) &
+        Q(count5__gte=0) 
+    )
+    serializers = MovieSerializers(movies, many=True)
+    return Response(serializers.data)
