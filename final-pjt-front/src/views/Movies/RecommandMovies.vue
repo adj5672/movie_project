@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Recommand from '@/components/Recommand'
+import Recommand from '@/components/Movies/Recommand'
 
 export default {
   name: "RecommandMovies",

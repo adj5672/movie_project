@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import PopularityCarousel from '@/components/Carousel/PopularityCarousel'
+import PopularityCarousel from '@/components/Movies/Carousel/PopularityCarousel'
 
 export default {
   name: 'Popularity',

@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import CreateReview from '@/components/CreateReview'
-import Review from '@/components/Review'
+import CreateReview from '@/components/Community/Reviews/CreateReview'
+import Review from '@/components/Community/Reviews/Review'
 
 export default {
   name: 'MovieDetail',

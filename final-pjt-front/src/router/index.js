@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import AllMovies from '@/views/AllMovies'
-import RecommandMovies from '@/views/RecommandMovies'
-import Signup from '@/views/Signup'
+import AllMovies from '@/views/Movies/AllMovies'
+import RecommandMovies from '@/views/Movies/RecommandMovies'
+import Signup from '@/views/Accounts/Signup'
 
 Vue.use(VueRouter)
 

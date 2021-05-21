@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import Popularity from '@/components/Popularity'
-import Romance from '@/components/Genre/Romance'
-import Action from '@/components/Genre/Action'
-import Fantasy from '@/components/Genre/Fantasy'
-import Horror from '@/components/Genre/Horror'
-import Comedy from '@/components/Genre/Comedy'
+import Popularity from '@/components/Movies/Popularity'
+import Romance from '@/components/Movies/Genre/Romance'
+import Action from '@/components/Movies/Genre/Action'
+import Fantasy from '@/components/Movies/Genre/Fantasy'
+import Horror from '@/components/Movies/Genre/Horror'
+import Comedy from '@/components/Movies/Genre/Comedy'
 
 export default {
   name: 'AllMovies',

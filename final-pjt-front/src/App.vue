@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import SideBar from '@/views/SideBar'
-import MovieDetail from '@/components/MovieDetail'
+import SideBar from '@/views/Accounts/SideBar'
+import MovieDetail from '@/components/Movies/MovieDetail'
 
 export default {
   name: 'App',

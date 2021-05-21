@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import TagCarousel from '@/components/Carousel/TagCarousel'
+import TagCarousel from '@/components/Movies/Carousel/TagCarousel'
 
 export default {
   name: 'Recommand',
