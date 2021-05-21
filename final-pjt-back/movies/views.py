@@ -1,4 +1,4 @@
-from django.shortcuts import get_list_or_404
+from django.shortcuts import get_list_or_404, get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -33,6 +33,12 @@ def movie_list(request):
 def movie_popularity(request):
     movies = Movie.objects.all().order_by('-popularity')[:10]
     serializer = MovieSerializers(movies, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET', ])
+def detail(request, movie_id):
+    movie = get_object_or_404(Movie, id=movie_id)
+    serializer = MovieSerializers(movie)
     return Response(serializer.data)
 
 @api_view(['GET',])
