@@ -3,6 +3,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import UserSerializer
 
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 @api_view(['POST'])
 def signup(request):
@@ -20,3 +23,14 @@ def signup(request):
         user.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+@api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def login(request):
+    user_id = request.user.id
+    username = request.user.username
+    data = {
+        "user_id": user_id,
+        "username": username
+    }
+    return Response(data)

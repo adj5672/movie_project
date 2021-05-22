@@ -51,7 +51,6 @@ export default {
     logout: function () {
       this.drawer = false
       localStorage.removeItem('jwt')
-      localStorage.removeItem('username')
       this.$store.dispatch('logOut')
     },
     myMovies: function () {

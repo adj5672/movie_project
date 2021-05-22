@@ -1,14 +1,14 @@
 <template>
-  <div>
+  <div >
     <el-dialog
       title=""
       :visible.sync="$store.state.reviewDialogVisible"
       width="90%"
       center>
-      <div class="container">
+      <div class="container" v-if="review.user">
         <h1>리뷰</h1>
         <hr>
-        <el-form ref="form" :model="review" label-width="120px" labelPosition="left">
+        <el-form v-if="$store.state.userId === review.user.id" ref="form" :model="review" label-width="120px" labelPosition="left">
           <w-rating v-model="review.rank" color="yellow"></w-rating>
           <el-form-item label="Tag">
             <el-select v-model="review.tags" placeholder="please select your zone">
@@ -48,7 +48,7 @@ export default {
   computed: {
     review: function () {
       return this.$store.state.selectedReview
-    }
+    },
   },
   methods: {
     // 리뷰 삭제
@@ -83,7 +83,6 @@ export default {
         })
     }
   },
-
 }
 </script>
 

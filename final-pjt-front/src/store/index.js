@@ -26,6 +26,7 @@ export default new Vuex.Store({
     selectedReview : {},
     reviews: [],
     // User 정보
+    userId: null,
     username: null,
     myMovies: [],
     myReviews: [],
@@ -74,19 +75,21 @@ export default new Vuex.Store({
     },
 
     // 로그인 및 로그아웃
-    LOGIN: function (state, data) {
-      const token = data[0]
-      const userName = data[1]
+    LOGIN: function (state, token) {
       state.isLogin = true
       state.config = {
         Authorization: `JWT ${token}`
       }
-      state.username = userName
+    },
+    USER_INFORMATION: function (state, data) {
+      state.userId = data.user_id
+      state.username = data.username
     },
     LOGOUT: function (state) {
       state.isLogin = false
       state.config = null
       state.username = null
+      state.user_id = null
     },
 
     // User가 좋아요를 누른 영화들
@@ -285,8 +288,19 @@ export default new Vuex.Store({
     },
 
     // 로그인 및 로그아웃
-    logIn: function (context, data) {
-      context.commit('LOGIN', data)
+    logIn: function (context, token) {
+      context.commit('LOGIN', token)
+      axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/accounts/login/',
+        headers: context.state.config,
+      })
+        .then(res=> {
+          context.commit('USER_INFORMATION', res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
     logOut: function (context) {
       context.commit('LOGOUT')

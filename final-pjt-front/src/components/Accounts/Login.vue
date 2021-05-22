@@ -34,10 +34,8 @@ export default {
       })
         .then(res => {
           localStorage.setItem('jwt', res.data.token)
-          localStorage.setItem('username', this.credentials.username)
           const token = res.data.token
-          const userName = this.credentials.username
-          this.$store.dispatch('logIn', [token, userName])
+          this.$store.dispatch('logIn', token)
           this.$emit('close-drawer')
         })
         .catch(err => {

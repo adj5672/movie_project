@@ -1,5 +1,6 @@
 <template>
   <div @click="getReviewDetail" class="card">
+    <p>{{ review.user.username }}</p>
     <span>{{ review.rank }}점</span>
     <span>{{ review.tags }}</span>
     <p>{{ review.title }}</p>
