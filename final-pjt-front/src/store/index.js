@@ -15,12 +15,17 @@ export default new Vuex.Store({
       comedy: [],
       tag_movies: [],
     },
+    // Login 정보
     isLogin: false,
+    config: {},
+    // Dialog
     centerDialogVisible: false,
     reviewDialogVisible: false,
+    // Movie Detail
     selectedMovie : {},
     reviews: [],
-    config: {},
+    // User 정보
+    myMovies: [],
   },
   mutations: {
     // 각 알고리즘 별 추천 영화 정보
@@ -71,6 +76,11 @@ export default new Vuex.Store({
     LOGOUT: function (state) {
       state.isLogin = false
       state.config = null
+    },
+
+    // User가 좋아요를 누른 영화들
+    GET_MY_MOVIES: function (state, movies) {
+      state.myMovies = movies
     }
   },
   actions: {
@@ -184,7 +194,6 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
-
     // 상세 영화 좋아요 여부 확인
     isLike: function (context, movie) {
       axios({
@@ -199,7 +208,6 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
-
     // 상세 영화 좋아요 선택
     likeMovie: function (context, movie) {
       axios({
@@ -209,6 +217,21 @@ export default new Vuex.Store({
       })
         .then(() => {
           context.dispatch('isLike', movie)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+
+    // User가 좋아요 누른 영화들 받아오기
+    getMyMovies: function (context) {
+      axios({
+        method: 'get',
+        url: `http://127.0.0.1:8000/movies/my_movies/`,
+        headers: context.state.config
+      })
+        .then(res => {
+          context.commit('GET_MY_MOVIES', res.data)
         })
         .catch(err => {
           console.log(err)

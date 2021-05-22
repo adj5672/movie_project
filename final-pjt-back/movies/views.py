@@ -7,6 +7,10 @@ import requests
 from .models import Movie
 from django.db.models import Count, Q, Avg
 
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+
 API_KEY = '28d059b233996387ca26ecda76d580cb'
 
 @api_view(['GET'])
@@ -87,3 +91,12 @@ def tags(request, feeling):
 
     serializers = MovieSerializers(movies, many=True)
     return Response(serializers.data)
+
+@api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def my_movies(request):
+    user = request.user
+    like_movies = user.like_movies.all()
+    serializer = MovieSerializers(like_movies, many=True)
+    return Response(serializer.data)
