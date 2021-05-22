@@ -19,10 +19,16 @@
       :visible.sync="drawer"
       :with-header="false"
       v-else>
-      <h1>Hello, {{ $store.state.username }}</h1>
-      <button @click="myMovies">My_Movies</button>
-      <br>
-      <button @click="logout">로그아웃</button>
+      <div class="d-flex flex-column justify-content-between" style="height: 100%;">
+        <h1>Hello, {{ $store.state.username }}</h1>
+        <div>
+          <button @click="myMovies">My_Movies</button>
+          <br>
+          <button @click="myReviews">My_Reviews</button>
+          <br>
+          <button @click="logout">로그아웃</button>
+        </div>
+      </div>
     </el-drawer>
 
   </div>
@@ -49,7 +55,14 @@ export default {
       this.$store.dispatch('logOut')
     },
     myMovies: function () {
+      this.drawer = false
       this.$store.dispatch('getMyMovies')
+      this.$router.push({ name: 'MyMovies' })
+    },
+    myReviews: function () {
+      this.drawer = false
+      this.$store.dispatch('getMyReviews')
+      this.$router.push({ name: 'MyReviews' })
     }
   },
 }

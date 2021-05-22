@@ -99,3 +99,12 @@ def like_movie(request, movie_id):
             'isLike': isLike
         }
         return Response(data)
+
+@api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def my_reviews(request):
+    user = request.user
+    my_reviews = user.review_set.all()
+    serializer = ReviewListSerializer(my_reviews, many=True)
+    return Response(serializer.data)
