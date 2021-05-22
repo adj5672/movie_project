@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span>{{ comment.user }} : {{ comment.content }}</span>
+    <span>{{ comment.user.username }} : {{ comment.content }}</span>
   </div>
 </template>
 

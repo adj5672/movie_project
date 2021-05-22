@@ -34,9 +34,9 @@ CORS_ALLOW_ALL_ORIGINS = True
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'movies',
     'community',
-    'accounts',
     'corsheaders',
     'rest_framework',
     'django_seed',
