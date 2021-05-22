@@ -9,7 +9,7 @@
         <h1>리뷰</h1>
         <hr>
         <el-form v-if="$store.state.userId === review.user.id" ref="form" :model="review" label-width="120px" labelPosition="left">
-          <w-rating v-model="review.rank" color="yellow"></w-rating>
+          <el-rate v-model="review.rank"></el-rate>
           <el-form-item label="Tag">
             <el-select v-model="review.tags" placeholder="please select your zone">
               <el-option label="기쁨" value="기쁨"></el-option>

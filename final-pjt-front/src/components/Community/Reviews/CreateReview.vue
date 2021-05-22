@@ -1,6 +1,6 @@
 <template>
   <el-form ref="form" :model="form" label-width="120px" labelPosition="left">
-    <w-rating v-model="form.rank" color="yellow"></w-rating>
+    <el-rate v-model="form.rank"></el-rate>
     <el-form-item label="Tag">
       <el-select v-model="form.tags" placeholder="please select your zone">
         <el-option label="기쁨" value="기쁨"></el-option>
