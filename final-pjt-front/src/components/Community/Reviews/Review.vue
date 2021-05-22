@@ -3,8 +3,6 @@
     <span>{{ review.rank }}점</span>
     <span>{{ review.tags }}</span>
     <p>{{ review.title }}</p>
-    <div class="text-end">
-    </div>
   </div>
 </template>
 

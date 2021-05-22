@@ -29,8 +29,6 @@ def reviews(request, movie_id):
             return Response(review.data)
 
 @api_view(['GET', 'PUT', 'DELETE', 'POST'])
-@authentication_classes([JSONWebTokenAuthentication])
-@permission_classes([IsAuthenticated])
 def review(request, movie_id, review_id):
     review = get_object_or_404(Review, pk=review_id)
 
@@ -61,7 +59,6 @@ def review(request, movie_id, review_id):
 @api_view(['PUT', 'DELETE', ])
 def comment(request, movie_id, review_id, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
-
     # 댓글 삭제
     if request.method == 'DELETE':
         comment.delete()

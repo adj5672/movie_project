@@ -39,6 +39,7 @@
 import axios from 'axios'
 import Comment from '@/components/Community/Comments/Comment'
 
+
 export default {
   name: 'ReviewDetail',
   components: {
@@ -83,6 +84,7 @@ export default {
         })
     }
   },
+
 }
 </script>
 
