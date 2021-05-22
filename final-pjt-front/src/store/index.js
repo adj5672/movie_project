@@ -215,7 +215,7 @@ export default new Vuex.Store({
       const review = data[1]
       axios({
         method: 'GET',
-        url: `http://127.0.0.1:8000/movies/${movie.id}/review/${review.id}/`,
+        url: `http://127.0.0.1:8000/community/${movie.id}/review/${review.id}/`,
         headers: context.state.config
       })
         .then(res => {

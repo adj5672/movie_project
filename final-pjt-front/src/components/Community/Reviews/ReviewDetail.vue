@@ -1,21 +1,41 @@
 <template>
   <div>
     <el-dialog
-      title="Warning"
+      title=""
       :visible.sync="$store.state.reviewDialogVisible"
       width="90%"
       center>
-      <span>It should be noted that the content will not be aligned in center by default</span>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="$store.state.reviewDialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="$store.state.reviewDialogVisible = false">Confirm</el-button>
-      </span>
+      <div class="container">
+        <h1>리뷰</h1>
+        <hr>
+        <el-form ref="form" :model="review" label-width="120px" labelPosition="left">
+          <w-rating v-model="review.rank" color="yellow"></w-rating>
+          <el-form-item label="Tag">
+            <el-select v-model="review.tags" placeholder="please select your zone">
+              <el-option label="기쁨" value="기쁨"></el-option>
+              <el-option label="슬픔" value="슬픔"></el-option>
+              <el-option label="짜증" value="짜증"></el-option>
+              <el-option label="심심" value="심심"></el-option>
+              <el-option label="사랑" value="사랑"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="Title">
+            <el-input v-model="review.title"></el-input>
+          </el-form-item>
+          <el-form-item label="Content">
+            <el-input type="textarea" v-model="review.content"></el-input>
+          </el-form-item>
+          <el-button type="primary" @click="updateReview">수정</el-button>
+          <el-button type="danger" @click="deleteReview">삭제</el-button>
+        </el-form>
+        <hr>
+        <Comment/>
+      </div>
     </el-dialog>
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
 import axios from 'axios'
 import Comment from '@/components/Community/Comments/Comment'
 
@@ -65,10 +85,6 @@ export default {
     }
   },
 
-=======
-export default {
-  name: 'ReviewDetail',
->>>>>>> 2d52d823fde5494fbd9ae8272763de335c6c07f8
 }
 </script>
 
