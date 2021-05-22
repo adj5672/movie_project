@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>인기 TOP 10</h3>
-  <carousel-3d>
+  <carousel-3d v-if="popularity.length === 10">
     <slide v-for="(movie, i) in popularity" :index="i" :key="i">
       <PopularityCarousel :movie="movie" :index="i" :centerIndex="centerIndex" @movie-index="movieIndex"/>
     </slide>
