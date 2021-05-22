@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+  <div>
+    <el-button @click="drawer = true">
       <span v-if="!$store.state.isLogin">로그인</span>
       <span v-else>개인정보</span>
     </el-button>
@@ -20,13 +20,16 @@
       :with-header="false"
       v-else>
       <div class="d-flex flex-column justify-content-between" style="height: 100%;">
-        <h1>Hello, {{ $store.state.username }}</h1>
         <div>
-          <button @click="myMovies">My_Movies</button>
+          <h1 class="mt-3">Hello, {{ $store.state.username }}</h1>
+          <img src="@/assets/profile_image.png" alt="profile" style="width: 70%;">
+        </div>
+        <div>
+          <el-button @click="myMovies" type="primary" style="width: 100%;">나만의 영화들</el-button>
           <br>
-          <button @click="myReviews">My_Reviews</button>
+          <el-button @click="myReviews" type="success" style="width: 100%;">나의 리뷰들</el-button>
           <br>
-          <button @click="logout">로그아웃</button>
+          <el-button @click="logout" type="danger" style="width: 100%;">로그아웃</el-button>
         </div>
       </div>
     </el-drawer>

@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link :to="{ name: 'AllMovies' }">전체영화</router-link> |
-      <router-link :to="{ name: 'RecommandMovies' }">추천영화</router-link> | 
-      <router-link :to="{ name: 'Signup' }" v-if="!this.$store.state.isLogin">회원가입</router-link>
+    <div id="nav" class="d-flex justify-content-center align-items-center">
+      <router-link class="mx-3" :to="{ name: 'AllMovies' }">전체영화</router-link>
+      <router-link class="mx-3" :to="{ name: 'RecommandMovies' }">추천영화</router-link>
+      <router-link class="mx-3" :to="{ name: 'Signup' }" v-if="!this.$store.state.isLogin">회원가입</router-link>
       <SideBar/>
     </div>
     <router-view/>
