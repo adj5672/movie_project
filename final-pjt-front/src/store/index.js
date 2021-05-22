@@ -26,7 +26,9 @@ export default new Vuex.Store({
     selectedReview : {},
     reviews: [],
     // User 정보
+    username: null,
     myMovies: [],
+    myReviews: [],
   },
   mutations: {
     // 각 알고리즘 별 추천 영화 정보
@@ -72,20 +74,28 @@ export default new Vuex.Store({
     },
 
     // 로그인 및 로그아웃
-    LOGIN: function (state, token) {
+    LOGIN: function (state, data) {
+      const token = data[0]
+      const userName = data[1]
       state.isLogin = true
       state.config = {
         Authorization: `JWT ${token}`
       }
+      state.username = userName
     },
     LOGOUT: function (state) {
       state.isLogin = false
       state.config = null
+      state.username = null
     },
 
     // User가 좋아요를 누른 영화들
     GET_MY_MOVIES: function (state, movies) {
       state.myMovies = movies
+    },
+    // User가 작성한 리뷰들
+    GET_MY_REVIEWS: function (state, reviews) {
+      state.myReviews = reviews
     }
   },
   actions: {
@@ -258,10 +268,24 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
+    // User가 작성한 리뷰들
+    getMyReviews: function (context) {
+      axios({
+        method: 'get',
+        url: `http://127.0.0.1:8000/community/my_reviews/`,
+        headers: context.state.config
+      })
+        .then(res => {
+          context.commit('GET_MY_REVIEWS', res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
 
     // 로그인 및 로그아웃
-    logIn: function (context, token) {
-      context.commit('LOGIN', token)
+    logIn: function (context, data) {
+      context.commit('LOGIN', data)
     },
     logOut: function (context) {
       context.commit('LOGOUT')
