@@ -51,21 +51,22 @@ export default {
     }
   },
   methods: {
+    // 리뷰 삭제
     deleteReview: function() {
       axios({
         method: 'DELETE',
         url: `http://127.0.0.1:8000/community/${this.$store.state.selectedMovie.id}/review/${this.review.id}/`,
         headers: this.$store.state.config,
       })
-        .then(res => {
-          console.log(res)
-          this.$store.dispatch('getReviews')
+        .then(() => {
+          this.$store.dispatch('selectMovie', this.$store.state.selectedMovie)
           this.$store.state.reviewDialogVisible = false
         })
         .catch(err => {
           console.log(err)
         })
     },
+    // 리뷰 수정
     updateReview: function() {
       axios({
         method: 'PUT',
@@ -73,11 +74,9 @@ export default {
         data: this.review,
         headers: this.$store.state.config,
       })
-        .then(res => {
-          console.log(res)
-          this.$store.dispatch('selectReview', [this.$store.state.selectedMovie, this.review])
-          this.$store.state.reviewDialogVisible = false
+        .then(() => {
           this.$store.dispatch('selectMovie', this.$store.state.selectedMovie)
+          this.$store.state.reviewDialogVisible = false
         })
         .catch(err => {
           console.log(err)

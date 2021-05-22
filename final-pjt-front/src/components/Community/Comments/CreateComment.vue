@@ -31,13 +31,12 @@ export default {
         data: this.form,
         headers: this.$store.state.config
       })
-        .then(res => {
-          console.log(res)
+        .then(() => {
+          this.$store.dispatch('selectReview', [this.$store.state.selectedMovie, this.$store.state.selectedReview])
         })
         .catch(err => {
           console.log(err)
         })
-      this.$store.dispatch('selectReview', [this.$store.state.selectedMovie, this.$store.state.selectedReview])
     }
   }
 }

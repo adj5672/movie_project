@@ -225,6 +225,7 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
+    
     // 상세 영화 좋아요 여부 확인
     isLike: function (context, movie) {
       axios({
