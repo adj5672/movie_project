@@ -52,6 +52,13 @@ export default new Vuex.Store({
     GET_REVIEWS: function (state, reviews) {
       state.reviews = reviews
     },
+    // 좋아요 확인 여부
+    IS_LIKE: function (state, like) {
+      state.selectedMovie = {
+        ...state.selectedMovie,
+        isLike: like
+      }
+    },
 
     // 로그인 및 로그아웃
     LOGIN: function (state, token) {
@@ -154,6 +161,7 @@ export default new Vuex.Store({
             ...res.data
           }
           context.commit('SELECT_MOVIE', merge_data)
+          context.dispatch('isLike', merge_data)
           context.dispatch('getReviews')
         })
         .catch(err => {
@@ -170,6 +178,36 @@ export default new Vuex.Store({
       })
         .then(res => {
           context.commit('GET_REVIEWS', res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+
+    // 상세 영화 좋아요 여부 확인
+    isLike: function (context, movie) {
+      axios({
+        method: 'get',
+        url: `http://127.0.0.1:8000/community/${movie.id}/like/`,
+        headers: context.state.config
+      })
+        .then(res => {
+          context.commit('IS_LIKE', res.data["isLike"])
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+
+    // 상세 영화 좋아요 선택
+    likeMovie: function (context, movie) {
+      axios({
+        method: 'post',
+        url: `http://127.0.0.1:8000/community/${movie.id}/like/`,
+        headers: context.state.config
+      })
+        .then(() => {
+          context.dispatch('isLike', movie)
         })
         .catch(err => {
           console.log(err)

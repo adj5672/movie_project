@@ -70,3 +70,32 @@ def comment(request, movie_id, review_id, comment_id):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
+
+@api_view(['GET', 'POST'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def like_movie(request, movie_id):
+    movie = get_object_or_404(Movie, id=movie_id)
+    user = request.user
+
+    if request.method == 'GET':
+        if movie.like_users.filter(pk=user.pk).exists():
+            isLike = True
+        else:
+            isLike = False
+        data = {
+            'isLike': isLike
+        }
+        return Response(data)
+
+    elif request.method == 'POST':
+        if movie.like_users.filter(pk=user.pk).exists():
+            movie.like_users.remove(user)
+            isLike = False
+        else:
+            movie.like_users.add(user)
+            isLike = True
+        data = {
+            'isLike': isLike
+        }
+        return Response(data)

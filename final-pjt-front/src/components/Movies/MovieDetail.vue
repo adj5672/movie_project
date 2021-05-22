@@ -13,8 +13,11 @@
           <br>
           <span v-for="(genre, idx) in movie.genres" :key="idx" class="me-2 fw-bold">#{{ genre.name }}</span>
           <p>평균 평점: {{ movie.rank_avg }}</p>
+          <div>
+            <button v-if="$store.state.selectedMovie.isLike" @click="likeMovie">좋아요 취소</button>
+            <button v-else @click="likeMovie">좋아요</button>
+          </div>
           <p>{{ movie.overview }}</p>
-          
           <p>{{ movie.review_cnt }}명 중에 "{{ movie.tag_count }}"명의 사람들이 이 영화를 보고 <button>#{{ movie.most_tag }}</button> 을 느꼈습니다.</p>
           <hr>
         </div>
@@ -53,6 +56,11 @@ export default {
       return this.$store.state.reviews
     }
   },
+  methods: {
+    likeMovie: function () {
+      this.$store.dispatch('likeMovie', this.movie)
+    }
+  }
 }
 </script>
 
