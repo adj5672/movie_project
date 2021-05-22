@@ -50,6 +50,10 @@ export default new Vuex.Store({
     SELECT_MOVIE: function (state, movie) {
       state.selectedMovie = movie
     },
+    // 상세 리뷰 선택
+    SELECT_REVIEW: function (state, review) {
+      state.selectedReview = review
+    },
     GET_REVIEWS: function (state, reviews) {
       state.reviews = reviews
     },
@@ -184,7 +188,20 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
-
+    // 상세 영화의 상세 리뷰 
+    selectReview: function (context, movie, review) {
+      axios({
+        method: 'GET',
+        url: `http://127.0.0.1:8000/movies/${movie.id}/review/${review.id}/`,
+        headers: context.state.config
+      })
+        .then(res => {
+          context.commit('SELECT_REVIEW', res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
     // 상세 영화 좋아요 여부 확인
     isLike: function (context, movie) {
       axios({

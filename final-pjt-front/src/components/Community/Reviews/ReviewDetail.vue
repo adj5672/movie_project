@@ -2,13 +2,13 @@
   <div>
     <el-dialog
       title="Warning"
-      :visible.sync="reviewDialogVisible"
-      width="30%"
+      :visible.sync="$store.state.reviewDialogVisible"
+      width="90%"
       center>
       <span>It should be noted that the content will not be aligned in center by default</span>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="reviewDialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="reviewDialogVisible = false">Confirm</el-button>
+        <el-button @click="$store.state.reviewDialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="$store.state.reviewDialogVisible = false">Confirm</el-button>
       </span>
     </el-dialog>
   </div>

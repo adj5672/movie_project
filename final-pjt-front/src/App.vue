@@ -9,6 +9,7 @@
       </div>
       <router-view/>
       <MovieDetail/>
+      <ReviewDetail/>
     </w-app>
   </div>
 </template>
@@ -16,12 +17,14 @@
 <script>
 import SideBar from '@/views/Accounts/SideBar'
 import MovieDetail from '@/components/Movies/MovieDetail'
+import ReviewDetail from '@/components/Community/Reviews/ReviewDetail'
 
 export default {
   name: 'App',
   components: {
     SideBar,
-    MovieDetail
+    MovieDetail,
+    ReviewDetail,
   },
   created: function () {
     this.$store.dispatch('getAllMovies')
