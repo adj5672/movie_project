@@ -1,88 +1,22 @@
 <template>
   <div>
     <el-dialog
-      title=""
+      title="Warning"
       :visible.sync="$store.state.reviewDialogVisible"
       width="90%"
       center>
-      <div class="container">
-        <h1>리뷰</h1>
-        <hr>
-        <el-form ref="form" :model="review" label-width="120px" labelPosition="left">
-          <w-rating v-model="review.rank" color="yellow"></w-rating>
-          <el-form-item label="Tag">
-            <el-select v-model="review.tags" placeholder="please select your zone">
-              <el-option label="기쁨" value="기쁨"></el-option>
-              <el-option label="슬픔" value="슬픔"></el-option>
-              <el-option label="짜증" value="짜증"></el-option>
-              <el-option label="심심" value="심심"></el-option>
-              <el-option label="사랑" value="사랑"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="Title">
-            <el-input v-model="review.title"></el-input>
-          </el-form-item>
-          <el-form-item label="Content">
-            <el-input type="textarea" v-model="review.content"></el-input>
-          </el-form-item>
-          <el-button type="primary" @click="updateReview">수정</el-button>
-          <el-button type="danger" @click="deleteReview">삭제</el-button>
-        </el-form>
-        <hr>
-        <Comment/>
-      </div>
+      <span>It should be noted that the content will not be aligned in center by default</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="$store.state.reviewDialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="$store.state.reviewDialogVisible = false">Confirm</el-button>
+      </span>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import Comment from '@/components/Community/Comments/Comment'
-
 export default {
   name: 'ReviewDetail',
-  components: {
-    Comment,
-  },
-  computed: {
-    review: function () {
-      return this.$store.state.selectedReview
-    }
-  },
-  methods: {
-    deleteReview: function() {
-      axios({
-        method: 'DELETE',
-        url: `http://127.0.0.1:8000/community/${this.$store.state.selectedMovie.id}/review/${this.review.id}/`,
-        headers: this.$store.state.config,
-      })
-        .then(res => {
-          console.log(res)
-          this.$store.dispatch('getReviews')
-          this.$store.state.reviewDialogVisible = false
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
-    updateReview: function() {
-      axios({
-        method: 'PUT',
-        url: `http://127.0.0.1:8000/community/${this.$store.state.selectedMovie.id}/review/${this.review.id}/`,
-        data: this.review,
-        headers: this.$store.state.config,
-      })
-        .then(res => {
-          console.log(res)
-          this.$store.dispatch('selectReview', [this.$store.state.selectedMovie, this.review])
-          this.$store.state.reviewDialogVisible = false
-          this.$store.dispatch('selectMovie', this.$store.state.selectedMovie)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    }
-  },
 }
 </script>
 

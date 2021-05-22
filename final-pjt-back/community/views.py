@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 from .models import Review, Comment
 from movies.models import Movie
-from .serializers import ReviewSerializer, CommentSerializer, ReviewListSerializer, CommentListSerializer
+from .serializers import ReviewSerializer, CommentSerializer, ReviewListSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -29,8 +29,6 @@ def reviews(request, movie_id):
             return Response(review.data)
 
 @api_view(['GET', 'PUT', 'DELETE', 'POST'])
-@authentication_classes([JSONWebTokenAuthentication])
-@permission_classes([IsAuthenticated])
 def review(request, movie_id, review_id):
     review = get_object_or_404(Review, pk=review_id)
 
@@ -61,7 +59,6 @@ def review(request, movie_id, review_id):
 @api_view(['PUT', 'DELETE', ])
 def comment(request, movie_id, review_id, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
-
     # 댓글 삭제
     if request.method == 'DELETE':
         comment.delete()
