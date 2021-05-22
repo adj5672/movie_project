@@ -50,8 +50,10 @@ def detail(request, movie_id):
     # review_cnt: 리뷰의 총 갯수
     review_cnt = movie.review_set.count()
     # 댓글의 평점 평균
-    rank_avg = round(movie.review_set.aggregate(Avg("rank"))["rank__avg"], 1)
-    
+    if review_cnt > 0:
+        rank_avg = round(movie.review_set.aggregate(Avg("rank"))["rank__avg"], 1)
+    else:
+        rank_avg = 0
     data = {
         "most_tag": sorted_tags[0][0],
         "tag_count": sorted_tags[0][1],
