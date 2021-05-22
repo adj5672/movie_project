@@ -23,6 +23,7 @@ export default new Vuex.Store({
     reviewDialogVisible: false,
     // Movie Detail
     selectedMovie : {},
+    selectedReview : {},
     reviews: [],
     // User 정보
     myMovies: [],
@@ -198,9 +199,10 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
-<<<<<<< HEAD
     // 상세 영화의 상세 리뷰 
-    selectReview: function (context, movie, review) {
+    selectReview: function (context, data) {
+      const movie = data[0]
+      const review = data[1]
       axios({
         method: 'GET',
         url: `http://127.0.0.1:8000/movies/${movie.id}/review/${review.id}/`,
@@ -213,8 +215,6 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
-=======
->>>>>>> 7874a62ede0ff2aaaa5b7323786f8de82235691b
     // 상세 영화 좋아요 여부 확인
     isLike: function (context, movie) {
       axios({

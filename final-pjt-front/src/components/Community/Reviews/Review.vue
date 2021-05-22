@@ -38,7 +38,7 @@ export default {
     },
     getReviewDetail: function () {
       this.$store.state.reviewDialogVisible = true
-      this.$store.dispatch('selectReview', this.movie, this.review)
+      this.$store.dispatch('selectReview', [this.movie, this.review])
     }
   }
 }
