@@ -5,8 +5,7 @@ from rest_framework.response import Response
 from .serializers import MovieSerializers
 import requests
 from .models import Movie
-from django.db.models import Count, Q
-from django.db.models.aggregates import Max
+from django.db.models import Count, Q, Avg
 
 API_KEY = '28d059b233996387ca26ecda76d580cb'
 
@@ -46,10 +45,18 @@ def detail(request, movie_id):
         심심 = Count("tags", filter=Q(tags="심심")),
         사랑 = Count("tags", filter=Q(tags="사랑"))
     )
+    # 태그 별로 갯수 정렬 (key: 태그 이름, value: 해당 태그 갯수)
     sorted_tags = sorted(tags.items(), key=lambda x: x[1], reverse=True)
+    # review_cnt: 리뷰의 총 갯수
+    review_cnt = movie.review_set.count()
+    # 댓글의 평점 평균
+    rank_avg = movie.review_set.aggregate(Avg("rank"))["rank__avg"]
+    
     data = {
         "most_tag": sorted_tags[0][0],
         "tag_count": sorted_tags[0][1],
+        "review_cnt": review_cnt,
+        "rank_avg": rank_avg
     }
     return Response(data)
 
