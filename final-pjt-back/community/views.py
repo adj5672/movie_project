@@ -11,8 +11,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 @api_view(['GET', 'POST',])
-# @authentication_classes([JSONWebTokenAuthentication])
-# @permission_classes([IsAuthenticated])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
 def reviews(request, movie_id):
     # 리뷰 가져오기
     if request.method == "GET":
