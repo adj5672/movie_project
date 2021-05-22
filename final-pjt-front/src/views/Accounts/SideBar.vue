@@ -19,8 +19,10 @@
       :visible.sync="drawer"
       :with-header="false"
       v-else>
-      <button @click="logout">로그아웃</button>
+      <h1>Hello, {{ $store.state.username }}</h1>
       <button @click="myMovies">My_Movies</button>
+      <br>
+      <button @click="logout">로그아웃</button>
     </el-drawer>
 
   </div>
@@ -43,6 +45,7 @@ export default {
     logout: function () {
       this.drawer = false
       localStorage.removeItem('jwt')
+      localStorage.removeItem('username')
       this.$store.dispatch('logOut')
     },
     myMovies: function () {

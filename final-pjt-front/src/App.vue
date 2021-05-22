@@ -30,7 +30,8 @@ export default {
     this.$store.dispatch('getAllMovies')
     const token = localStorage.getItem('jwt')
     if (token) {
-      this.$store.dispatch('logIn', token)
+      const userName = localStorage.getItem('username')
+      this.$store.dispatch('logIn', [token, userName])
     }
   }
 }

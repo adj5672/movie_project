@@ -26,6 +26,7 @@ export default new Vuex.Store({
     selectedReview : {},
     reviews: [],
     // User 정보
+    username: null,
     myMovies: [],
   },
   mutations: {
@@ -72,15 +73,19 @@ export default new Vuex.Store({
     },
 
     // 로그인 및 로그아웃
-    LOGIN: function (state, token) {
+    LOGIN: function (state, data) {
+      const token = data[0]
+      const userName = data[1]
       state.isLogin = true
       state.config = {
         Authorization: `JWT ${token}`
       }
+      state.username = userName
     },
     LOGOUT: function (state) {
       state.isLogin = false
       state.config = null
+      state.username = null
     },
 
     // User가 좋아요를 누른 영화들
@@ -260,8 +265,8 @@ export default new Vuex.Store({
     },
 
     // 로그인 및 로그아웃
-    logIn: function (context, token) {
-      context.commit('LOGIN', token)
+    logIn: function (context, data) {
+      context.commit('LOGIN', data)
     },
     logOut: function (context) {
       context.commit('LOGOUT')
