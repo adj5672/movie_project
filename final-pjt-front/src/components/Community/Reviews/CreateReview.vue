@@ -46,7 +46,7 @@ export default {
         headers: this.$store.state.config
       })
         .then(() => {
-          this.$store.dispatch('getReviews')
+          this.$store.dispatch('selectMovie', this.$store.state.selectedMovie)
         })
         .catch(err => {
           console.log(err)
