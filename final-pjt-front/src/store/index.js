@@ -22,7 +22,7 @@ export default new Vuex.Store({
     config: {},
   },
   mutations: {
-    // 각 장르의 추천 영화 정보
+    // 각 알고리즘 별 추천 영화 정보
     POPULARITY: function (state, movies) {
       state.movies.popularity = movies
     }, 
@@ -44,6 +44,8 @@ export default new Vuex.Store({
     TAGS: function (state, movies) {
       state.movies.tag_movies = movies
     },
+
+    // 상세 영화 선택 및 상세 영화 리뷰 전체 조회
     SELECT_MOVIE: function (state, movie) {
       state.selectedMovie = movie
     },
@@ -142,8 +144,21 @@ export default new Vuex.Store({
 
     // 상세정보를 확인할 영화 선택
     selectMovie: function (context, movie) {
-      context.commit('SELECT_MOVIE', movie)
-      context.dispatch('getReviews')
+      axios({
+        method: 'get',
+        url: `http://127.0.0.1:8000/movies/${movie.id}/`
+      })
+        .then(res => {
+          const merge_data = {
+            ...movie,
+            ...res.data
+          }
+          context.commit('SELECT_MOVIE', merge_data)
+          context.dispatch('getReviews')
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
     // 상세 영화의 리뷰들 
     getReviews: function (context) {

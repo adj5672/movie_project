@@ -8,7 +8,7 @@ urlpatterns = [
     path('list/', views.movie_list),
     # 인기 top 10 영화
     path('popularity/', views.movie_popularity),
-    # 영화 상세 페이지
+    # 영화 상세 페이지(최대 태그 및 태그 갯수 반환)
     path('<int:movie_id>/', views.detail),
     # 장르별 random 영화 10개
     path('genre/<int:genre_id>/', views.genre),

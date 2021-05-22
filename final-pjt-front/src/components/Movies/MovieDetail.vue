@@ -13,7 +13,7 @@
           <br>
           <span v-for="(genre, idx) in movie.genres" :key="idx" class="me-2 fw-bold">#{{ genre.name }}</span>
           <p>{{ movie.overview }}</p>
-          <p>'n'명의 사람들이 이 영화를 보고 <button>#기쁨</button> 을 느꼈습니다.</p>
+          <p>"{{ movie.tag_count }}"명의 사람들이 이 영화를 보고 <button>#{{ movie.most_tag }}</button> 을 느꼈습니다.</p>
           <hr>
         </div>
       </div>
