@@ -17,6 +17,7 @@ export default new Vuex.Store({
     },
     isLogin: false,
     centerDialogVisible: false,
+    reviewDialogVisible: false,
     selectedMovie : {},
     reviews: [],
     config: {},
