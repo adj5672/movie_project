@@ -26,8 +26,8 @@
           <el-form-item label="Content">
             <el-input type="textarea" v-model="review.content"></el-input>
           </el-form-item>
-          <div>생성 시각: {{ review.created_at }}</div>
-          <div>수정 시각: {{ review.updated_at }}</div>
+          <div>생성 시각: {{ createdAt }}</div>
+          <div>수정 시각: {{ updatedAt }}</div>
           <el-button type="primary" @click="updateReview">수정</el-button>
           <el-button type="danger" @click="deleteReview">삭제</el-button>
         </el-form>
@@ -39,10 +39,10 @@
             disabled
             text-color="#ff9900">
           </el-rate>
-          <p>Tag: {{ review.tags }}</p>
-          <p>Content: {{ review.content }}</p>
-          <div>생성: {{ review.created_at }}</div>
-          <div>수정: {{ review.updated_at }}</div>
+          <div>Tag: {{ review.tags }}</div>
+          <div>Content: {{ review.content }}</div>
+          <div>생성: {{ createdAt }}</div>
+          <div>수정: {{ updatedAt }}</div>
         </el-form>
         <hr>
         <!-- 댓글 Component -->
@@ -66,6 +66,12 @@ export default {
     review: function () {
       return this.$store.state.selectedReview
     },
+    createdAt: function () {
+      return this.$moment(this.review.created_at).format('YY-MM-DD HH:mm:ss')
+    },
+    updatedAt: function () {
+      return this.$moment(this.review.updated_at).format('YY-MM-DD HH:mm:ss')
+    }
   },
   methods: {
     // 리뷰 삭제

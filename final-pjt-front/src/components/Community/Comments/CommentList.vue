@@ -1,7 +1,7 @@
 <template>
   <div>
     <span>{{ comment.user.username }} : {{ comment.content }}</span>
-    <span>생성: {{ comment.created_at }} 수정: {{ comment.updated_at }}</span>
+    <span>생성: {{ createdAt }} 수정: {{ updatedAt }}</span>
     <span v-if="$store.state.userId === comment.user.id">
       <button @click="commentDetail">수정</button>
       <button @click="deleteComment">삭제</button>
@@ -38,6 +38,14 @@ export default {
       this.$store.dispatch('selectComment', this.comment)
       this.$store.state.commentDialogVisible = true
     }
+  },
+  computed: {
+    createdAt: function () {
+      return this.$moment(this.comment.created_at).format('YY-MM-DD HH:mm:ss')
+    },
+    updatedAt: function () {
+      return this.$moment(this.comment.updated_at).format('YY-MM-DD HH:mm:ss')
+    },
   }
 }
 </script>
