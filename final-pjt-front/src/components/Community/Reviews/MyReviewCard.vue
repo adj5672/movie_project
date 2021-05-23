@@ -1,0 +1,37 @@
+<template>
+  <div style="padding: 10px;" @click="getReviewDetail">
+    <h4 class="fw-bold">{{ review.movie.title }}</h4>
+    <hr>
+    <el-rate
+      v-model="review.rank"
+      disabled>
+    </el-rate>
+    <br>
+    <h5>{{ review.title }}</h5>
+    <p>{{ review.content }}</p>
+    <p>{{ review.tags }}</p>
+    <p>댓글 ({{ review.comment_cnt }})</p>
+    <!-- <p>{{ review }}</p> -->
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'MyReviewCard',
+  props: {
+    review: {
+      type: Object,
+    }
+  },
+  methods: { 
+    getReviewDetail: function () {
+      this.$store.dispatch('selectReview', [this.review.movie, this.review])
+      this.$store.state.reviewDialogVisible = true
+    }
+  }
+}
+</script>
+
+<style>
+
+</style>

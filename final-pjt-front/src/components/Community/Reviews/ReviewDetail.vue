@@ -6,7 +6,7 @@
       width="90%"
       center>
       <div class="container" v-if="review.user">
-        <h1>리뷰</h1>
+        <h1>{{ review.movie.title }}</h1>
         <hr>
         <el-form v-if="$store.state.userId === review.user.id" ref="form" :model="review" label-width="120px" labelPosition="left">
           <el-rate v-model="review.rank"></el-rate>

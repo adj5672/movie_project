@@ -1,14 +1,25 @@
 <template>
   <div class="container">
     <h1>My_Reviews</h1>
-    <br>
-    <p v-for="(review, idx) in myReviews" :key="idx">{{ review }}</p>
+    <hr>
+    <el-row :gutter="24">
+      <el-col :span="8" v-for="(review, index) in myReviews" :key="index" class="my-4">
+        <el-card :body-style="{ padding: '10px' }">
+          <MyReviewCard :review="review"/>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
+import MyReviewCard from '@/components/Community/Reviews/MyReviewCard'
+
 export default {
   name: 'MyReviews',
+  components: {
+    MyReviewCard,
+  },
   computed: {
     myReviews: function () {
       return this.$store.state.myReviews

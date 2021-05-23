@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>댓글</h1>
+    <h1>댓글 ({{ $store.state.selectedReview.comment_cnt }})</h1>
     <CreateComment/>
     <CommentList v-for="(comment, idx) in comments" :key="idx" :comment="comment"/>
   </div>
