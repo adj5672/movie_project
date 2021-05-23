@@ -12,7 +12,14 @@
           <span>{{ movie.release_date }}</span>
           <br>
           <span v-for="(genre, idx) in movie.genres" :key="idx" class="me-2 fw-bold">#{{ genre.name }}</span>
-          <p>평균 평점: {{ movie.rank_avg }}</p>
+          <!-- <p>평균 평점: {{ movie.rank_avg }}</p> -->
+          <el-rate
+            v-model="movie.rank_avg"
+            disabled
+            show-score
+            text-color="#ff9900">
+          </el-rate>
+          <br>
           <div>
             <button v-if="$store.state.selectedMovie.isLike" @click="likeMovie">좋아요 취소</button>
             <button v-else @click="likeMovie">좋아요</button>

@@ -32,7 +32,12 @@
         </el-form>
         <el-form v-else>
           <h3>Title: {{ review.title }}</h3>
-          <p>rank: {{ review.rank }}</p>
+          <!-- <p>rank: {{ review.rank }}</p> -->
+          <el-rate
+            v-model="review.rank"
+            disabled
+            text-color="#ff9900">
+          </el-rate>
           <p>Tag: {{ review.tags }}</p>
           <p>Content: {{ review.content }}</p>
           <div>생성: {{ review.created_at }}</div>
