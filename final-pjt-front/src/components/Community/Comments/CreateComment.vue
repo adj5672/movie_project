@@ -2,7 +2,7 @@
   <div>
     <el-form ref="form" :model="form" label-width="120px" labelPosition="left">
       <el-form-item label="content" prop="desc">
-      <el-input type="textarea" v-model="form.content"></el-input>
+      <el-input @keyup.enter="createComment" type="textarea" v-model="form.content"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="createComment">Create</el-button>

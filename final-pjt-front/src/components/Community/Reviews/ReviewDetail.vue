@@ -25,8 +25,18 @@
           <el-form-item label="Content">
             <el-input type="textarea" v-model="review.content"></el-input>
           </el-form-item>
+          <div>생성 시각: {{ review.created_at }}</div>
+          <div>수정 시각: {{ review.updated_at }}</div>
           <el-button type="primary" @click="updateReview">수정</el-button>
           <el-button type="danger" @click="deleteReview">삭제</el-button>
+        </el-form>
+        <el-form v-else>
+          <h3>Title: {{ review.title }}</h3>
+          <p>rank: {{ review.rank }}</p>
+          <p>Tag: {{ review.tags }}</p>
+          <p>Content: {{ review.content }}</p>
+          <div>생성: {{ review.created_at }}</div>
+          <div>수정: {{ review.updated_at }}</div>
         </el-form>
         <hr>
         <Comment/>
