@@ -4,6 +4,7 @@ import AllMovies from '@/views/Movies/AllMovies'
 import RecommandMovies from '@/views/Movies/RecommandMovies'
 import MyMovies from '@/views/Movies/MyMovies'
 import MyReviews from '@/views/Community/MyReviews'
+import MyComments from '@/views/Community/MyComments'
 import Signup from '@/views/Accounts/Signup'
 
 Vue.use(VueRouter)
@@ -33,6 +34,11 @@ const routes = [
     path: '/MyReviews',
     name: 'MyReviews',
     component: MyReviews
+  },
+  {
+    path: '/MyComments',
+    name: 'MyComments',
+    component: MyComments
   },
 ]
 

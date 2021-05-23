@@ -3,7 +3,7 @@
     <el-dialog
       title=""
       :visible.sync="$store.state.reviewDialogVisible"
-      width="90%"
+      width="80%"
       center>
       <div class="container" v-if="review.user">
         <h1>{{ review.movie.title }}</h1>

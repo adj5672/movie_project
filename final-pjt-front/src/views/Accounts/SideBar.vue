@@ -26,14 +26,16 @@
       v-else>
       <div class="d-flex flex-column justify-content-between" style="height: 100%;">
         <div>
-          <div class="my-3">
+          <div class="my-4">
+            <img src="@/assets/profile_image.png" alt="profile" style="width: 50%;">
             <h1>Hello, {{ $store.state.username }}</h1>
-            <img src="@/assets/profile_image.png" alt="profile" style="width: 70%;">
           </div>
           <div class="d-flex flex-column align-items-center">
             <el-button @click="myMovies" type="primary" style="width: 80%;">나만의 영화들</el-button>
             <br>
             <el-button @click="myReviews" type="success" style="width: 80%;">나의 리뷰들</el-button>
+            <br>
+            <el-button @click="myComments" type="warning" style="width: 80%;">나의 댓글들</el-button>
             <br>
             <el-button @click="logout" type="danger" style="width: 80%;">로그아웃</el-button>
           </div>
@@ -75,6 +77,11 @@ export default {
       this.drawer = false
       this.$store.dispatch('getMyReviews')
       this.$router.push({ name: 'MyReviews' })
+    },
+    myComments: function () {
+      this.drawer = false
+      this.$store.dispatch('getMyComments')
+      this.$router.push({ name: 'MyComments' })
     }
   },
 }

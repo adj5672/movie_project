@@ -32,6 +32,7 @@ export default new Vuex.Store({
     username: null,
     myMovies: [],
     myReviews: [],
+    myComments: [],
     // 현재 시간 정보
     Year: null,
     Month: null,
@@ -112,6 +113,10 @@ export default new Vuex.Store({
     // User가 작성한 리뷰들
     GET_MY_REVIEWS: function (state, reviews) {
       state.myReviews = reviews
+    },
+    // User가 작성한 댓글들
+    GET_MY_COMMENTS: function (state, comments) {
+      state.myComments = comments
     }
   },
   actions: {
@@ -297,6 +302,20 @@ export default new Vuex.Store({
       })
         .then(res => {
           context.commit('GET_MY_REVIEWS', res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    // User가 작성한 댓글들
+    getMyComments: function (context) {
+      axios({
+        method: 'get',
+        url: `http://127.0.0.1:8000/community/my_comments/`,
+        headers: context.state.config
+      })
+        .then(res => {
+          context.commit('GET_MY_COMMENTS', res.data)
         })
         .catch(err => {
           console.log(err)

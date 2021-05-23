@@ -8,7 +8,7 @@
     </el-rate>
     <br>
     <h5>{{ review.title }}</h5>
-    <p>{{ review.content }}</p>
+    <p>{{ review.content | stringTruncate }}</p>
     <p>{{ review.tags }}</p>
     <p>댓글 ({{ review.comment_cnt }})</p>
     <!-- <p>{{ review }}</p> -->
@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import _ from 'lodash'
+
 export default {
   name: 'MyReviewCard',
   props: {
@@ -27,6 +29,13 @@ export default {
     getReviewDetail: function () {
       this.$store.dispatch('selectReview', [this.review.movie, this.review])
       this.$store.state.reviewDialogVisible = true
+    }
+  },
+  filters: {
+    stringTruncate: function (text) {
+      return _.truncate(text, {
+        'length': 200
+      })
     }
   }
 }

@@ -110,3 +110,12 @@ def my_reviews(request):
     my_reviews = user.review_set.all()
     serializer = ReviewListSerializer(my_reviews, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def my_comments(request):
+    user = request.user
+    my_comments = user.comment_set.all()
+    serializer = CommentListSerializer(my_comments, many=True)
+    return Response(serializer.data)
