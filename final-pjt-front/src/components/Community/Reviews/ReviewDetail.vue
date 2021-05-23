@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <el-dialog
       title=""
       :visible.sync="$store.state.reviewDialogVisible"

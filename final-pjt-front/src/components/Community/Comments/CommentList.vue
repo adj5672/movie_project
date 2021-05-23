@@ -3,7 +3,7 @@
     <span>{{ comment.user.username }} : {{ comment.content }}</span>
     <span>생성: {{ comment.created_at }} 수정: {{ comment.updated_at }}</span>
     <span v-if="$store.state.userId === comment.user.id">
-      <button>수정</button>
+      <button @click="commentDetail">수정</button>
       <button @click="deleteComment">삭제</button>
     </span>
   </div>
@@ -33,6 +33,10 @@ export default {
         .catch(err => {
           console.log(err)
         })
+    },
+    commentDetail: function () {
+      this.$store.dispatch('selectComment', this.comment)
+      this.$store.state.commentDialogVisible = true
     }
   }
 }

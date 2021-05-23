@@ -21,9 +21,11 @@ export default new Vuex.Store({
     // Dialog
     centerDialogVisible: false,
     reviewDialogVisible: false,
+    commentDialogVisible: false,
     // Movie Detail
     selectedMovie : {},
     selectedReview : {},
+    selectedComment : {},
     reviews: [],
     // User 정보
     userId: null,
@@ -62,6 +64,10 @@ export default new Vuex.Store({
     // 상세 리뷰 선택
     SELECT_REVIEW: function (state, review) {
       state.selectedReview = review
+    },
+    // 상세 댓글 선택
+    SELECT_COMMENT: function (state, comment) {
+      state.selectedComment = comment
     },
     GET_REVIEWS: function (state, reviews) {
       state.reviews = reviews
@@ -228,7 +234,10 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
-    
+    // 상세 리뷰의 상세 댓글 
+    selectComment: function (context, data) {
+      context.commit('SELECT_COMMENT', data)
+    },
     // 상세 영화 좋아요 여부 확인
     isLike: function (context, movie) {
       axios({

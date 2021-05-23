@@ -9,6 +9,7 @@
     <router-view/>
     <MovieDetail/>
     <ReviewDetail/>
+    <CommentDetail/>
   </div>
 </template>
 
@@ -16,6 +17,7 @@
 import SideBar from '@/views/Accounts/SideBar'
 import MovieDetail from '@/components/Movies/MovieDetail'
 import ReviewDetail from '@/components/Community/Reviews/ReviewDetail'
+import CommentDetail from '@/components/Community/Comments/CommentDetail'
 
 export default {
   name: 'App',
@@ -23,6 +25,7 @@ export default {
     SideBar,
     MovieDetail,
     ReviewDetail,
+    CommentDetail,
   },
   created: function () {
     this.$store.dispatch('getAllMovies')
