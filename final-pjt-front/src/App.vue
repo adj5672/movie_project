@@ -29,8 +29,22 @@ export default {
     ReviewDetail,
     CommentDetail,
   },
+  methods: {
+    currentTime: function () {
+      this.$store.state.Year = this.$moment().format('YYYY')
+      this.$store.state.Month = this.$moment().format('MM')
+      this.$store.state.Day = this.$moment().format('DD')
+      this.$store.state.Hour = this.$moment().format('H')
+      this.$store.state.Minute = this.$moment().format('mm')
+      this.$store.state.Second = this.$moment().format('ss')
+    }
+  },
   created: function () {
+    // 실시간 시간 정보 받아오기
+    setInterval(this.currentTime, 1000)
+    // 전체 영화 정보 받아오기
     this.$store.dispatch('getAllMovies')
+    // 로그인 여부 확인
     const token = localStorage.getItem('jwt')
     if (token) {
       this.$store.dispatch('logIn', token)

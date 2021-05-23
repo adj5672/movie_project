@@ -32,6 +32,13 @@ export default new Vuex.Store({
     username: null,
     myMovies: [],
     myReviews: [],
+    // 현재 시간 정보
+    Year: null,
+    Month: null,
+    Day: null,
+    Hour: null,
+    Minute: null,
+    Second: null,
   },
   mutations: {
     // 각 알고리즘 별 추천 영화 정보
