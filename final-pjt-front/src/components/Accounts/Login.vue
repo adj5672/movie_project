@@ -38,8 +38,8 @@ export default {
           this.$store.dispatch('logIn', token)
           this.$emit('close-drawer')
         })
-        .catch(err => {
-          console.log(err)
+        .catch(() => {
+          this.$message.error('입력 항목을 다시 확인해주세요.')
         })
     }
   }
