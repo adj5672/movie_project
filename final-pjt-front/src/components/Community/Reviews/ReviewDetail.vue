@@ -8,6 +8,7 @@
       <div class="container" v-if="review.user">
         <h1>{{ review.movie.title }}</h1>
         <hr>
+        <!-- 리뷰 수정 Form -->
         <el-form v-if="$store.state.userId === review.user.id" ref="form" :model="review" label-width="120px" labelPosition="left">
           <el-rate v-model="review.rank"></el-rate>
           <el-form-item label="Tag">
@@ -30,9 +31,9 @@
           <el-button type="primary" @click="updateReview">수정</el-button>
           <el-button type="danger" @click="deleteReview">삭제</el-button>
         </el-form>
+        <!-- 상세 리뷰 내용 -->
         <el-form v-else>
           <h3>Title: {{ review.title }}</h3>
-          <!-- <p>rank: {{ review.rank }}</p> -->
           <el-rate
             v-model="review.rank"
             disabled
@@ -44,6 +45,7 @@
           <div>수정: {{ review.updated_at }}</div>
         </el-form>
         <hr>
+        <!-- 댓글 Component -->
         <Comment/>
       </div>
     </el-dialog>
