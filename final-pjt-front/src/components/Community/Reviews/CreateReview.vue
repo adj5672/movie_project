@@ -1,7 +1,10 @@
 <template>
   <el-form ref="form" :model="form" label-width="120px" labelPosition="left">
-    <el-rate v-model="form.rank"></el-rate>
-    <el-form-item label="Tag">
+    <div class="d-flex"> 
+      <span class="align-self-center me-5">평점</span>
+      <el-rate class="mt-3 ms-5" v-model="form.rank"></el-rate>
+    </div>
+    <el-form-item label="기분">
       <el-select v-model="form.tags" placeholder="please select your zone">
         <el-option label="기쁨" value="기쁨"></el-option>
         <el-option label="슬픔" value="슬픔"></el-option>
@@ -10,14 +13,14 @@
         <el-option label="사랑" value="사랑"></el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="Title">
+    <el-form-item label="리뷰 제목">
       <el-input v-model="form.title"></el-input>
     </el-form-item>
-    <el-form-item label="Content">
+    <el-form-item label="리뷰 내용">
       <el-input type="textarea" v-model="form.content"></el-input>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="createReview">Create</el-button>
+      <el-button type="primary" @click="createReview">작성</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -63,5 +66,7 @@ export default {
 </script>
 
 <style>
-
+  .el-form > div {
+    margin-bottom: 1rem;
+  }
 </style>

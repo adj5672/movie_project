@@ -1,13 +1,15 @@
 <template>
-  <div @click="getReviewDetail" class="card">
+  <div @click="getReviewDetail" class="card card-hover p-2" style="cursor: pointer;">
     <div class="d-flex justify-content-between">
       <div class="flex-column">
+        <h5 class="m-0">{{ review.title }}</h5>
+        <hr class="my-2">
         <el-rate
           v-model="review.rank"
-          disabled>
+          disabled
+          class="mb-1">
         </el-rate>
         <div>Tag: {{ review.tags }}</div>
-        <div>Title: {{ review.title }}</div>
       </div>
       <div>
         <div>작성자: {{ review.user.username }}</div>
@@ -50,5 +52,7 @@ export default {
 </script>
 
 <style>
-
+  .card-hover:hover {
+    background: #eeee;
+  }
 </style>
