@@ -8,7 +8,7 @@
       <option value="사랑">사랑</option>
     </select>
     <button @click="getTagMovies">선택</button>
-    <carousel-3d>
+    <carousel-3d v-if="$store.state.movies.tag_movies.length > 0">
       <slide v-for="(movie, i) in tagMovies" :index="i" :key="i">
         <TagCarousel :movie="movie" :index="i"/>
       </slide>
@@ -38,6 +38,9 @@ export default {
     tagMovies: function () {
       return this.$store.state.movies.tag_movies
     }
+  },
+  created: function () {
+    this.getTagMovies()
   }
 }
 </script>
