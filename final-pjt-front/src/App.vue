@@ -34,7 +34,7 @@ export default {
       this.$store.state.Year = this.$moment().format('YYYY')
       this.$store.state.Month = this.$moment().format('MM')
       this.$store.state.Day = this.$moment().format('DD')
-      this.$store.state.Hour = this.$moment().format('H')
+      this.$store.state.Hour = this.$moment().format('HH')
       this.$store.state.Minute = this.$moment().format('mm')
       this.$store.state.Second = this.$moment().format('ss')
     }

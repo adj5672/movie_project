@@ -27,6 +27,9 @@ export default {
     },
     movie: {
       type: Object
+    },
+    page: {
+      type: Number,
     }
   },
   methods: { 

@@ -35,7 +35,15 @@
         <CreateReview/>
         <hr>
         <h1>전체 리뷰 조회</h1>
-        <Review v-for="(review, idx) in reviews" :review="review" :movie="movie" :key="idx"/>
+        <Review v-for="(review, idx) in paginatedReviews" :review="review" :page="page" :movie="movie" :key="idx"/>
+        <el-pagination
+          class="text-center"
+          background
+          :page-size="5"
+          layout="prev, pager, next"
+          :total="totalPage"
+          @current-change="movePage">
+        </el-pagination>
       </div>
       <h2 v-else>로그인을 해야 리뷰를 작성, 조회 할 수 있습니다.</h2>
     </div>
@@ -48,6 +56,11 @@ import Review from '@/components/Community/Reviews/Review'
 
 export default {
   name: 'MovieDetail',
+  data: function () {
+    return {
+      page: 1,
+    }
+  },
   components: {
     CreateReview,
     Review,
@@ -61,11 +74,23 @@ export default {
     },
     reviews: function () {
       return this.$store.state.reviews
-    }
+    },
+    paginatedReviews: function () {
+      const start = (this.page - 1) * 5, // 1페이지면 0~5
+            end = start + 5;
+      return this.reviews.slice(start, end);
+    },
+    totalPage: function () {
+      return this.reviews.length
+    },
   },
   methods: {
     likeMovie: function () {
       this.$store.dispatch('likeMovie', this.movie)
+    },
+    movePage : function (page) {
+      this.page = page
+      console.log(this.page)
     }
   }
 }
