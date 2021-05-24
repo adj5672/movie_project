@@ -1,20 +1,27 @@
 <template>
-  <div>
+  <div id="Signup">
     <h1>회원가입</h1>
-    <hr>
-        <div>
-      <label for="username">사용자 이름: </label>
-      <input type="text" id="username" v-model="credentials.username">
-    </div>
+    <br>
     <div>
-      <label for="password">비밀번호: </label>
-      <input type="password" id="password" v-model="credentials.password">
+      <el-form label-position="top" label-width="100px" :model="credentials" class="d-flex flex-column align-items-center">
+        <el-form-item label="아이디" class="d-flex flex-column align-items-start fw-bold">
+          <el-input v-model="credentials.username" style="width: 400px;"></el-input>
+        </el-form-item>
+        <el-form-item label="비밀번호" class="d-flex flex-column align-items-start fw-bold">
+          <el-input type="password" v-model="credentials.password" style="width: 400px;"></el-input>
+        </el-form-item>
+        <el-form-item label="비밀번호 재확인" class="d-flex flex-column align-items-start fw-bold">
+          <el-input type="password" v-model="credentials.passwordConfirmation" style="width: 400px;"></el-input>
+        </el-form-item>
+        <el-form-item label="이메일" class="d-flex flex-column align-items-start fw-bold">
+          <el-input v-model="credentials.email" style="width: 400px;" placeholder="선택입력"></el-input>
+        </el-form-item>
+        <el-form-item class="d-flex flex-column align-items-start fw-bold my-4">
+          <el-button type="primary" @click="signup()" style="width: 400px; font-size: 1.1rem;">가입하기</el-button>
+        </el-form-item>
+      </el-form>
     </div>
-    <div>
-      <label for="passwordConfirmation">비밀번호 확인: </label>
-      <input type="password" id="passwordConfirmation" v-model="credentials.passwordConfirmation">
-    </div>
-    <el-button :plain="true" @click="signup()">회원가입</el-button>
+
   </div>
 </template>
 
@@ -28,7 +35,8 @@ export default {
       credentials: {
         username: null,
         password: null,
-        passwordConfirmation: null
+        passwordConfirmation: null,
+        email: '',
       }
     }
   },
@@ -55,5 +63,9 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
+#Signup {
+  font-family: 'Jua', sans-serif;
+}
 </style>

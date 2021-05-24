@@ -1,25 +1,23 @@
 <template>
   <el-form ref="form" :model="form" label-width="120px" labelPosition="left">
-    <div class="d-flex"> 
-      <span class="align-self-center me-5">평점</span>
-      <el-rate class="mt-3 ms-5" v-model="form.rank"></el-rate>
-    </div>
-    <el-form-item label="기분">
-      <el-select v-model="form.tags" placeholder="please select your zone">
+    <div class="d-flex my-3"> 
+      <span class="align-self-center">평점</span>
+      <el-rate class="my-auto ms-4" v-model="form.rank"></el-rate>
+      <el-select v-model="form.tags" class="ms-3" placeholder="please select your zone" style="width: 80px;">
         <el-option label="기쁨" value="기쁨"></el-option>
         <el-option label="슬픔" value="슬픔"></el-option>
         <el-option label="짜증" value="짜증"></el-option>
         <el-option label="심심" value="심심"></el-option>
         <el-option label="사랑" value="사랑"></el-option>
       </el-select>
-    </el-form-item>
-    <el-form-item label="리뷰 제목">
+    </div>
+    <el-form-item label="제목" label-width="50px">
       <el-input v-model="form.title"></el-input>
     </el-form-item>
-    <el-form-item label="리뷰 내용">
-      <el-input type="textarea" v-model="form.content"></el-input>
+    <el-form-item label="내용" label-width="50px">
+      <el-input type="textarea" v-model="form.content" :autosize="{ minRows: 6, maxRows: 6}"></el-input>
     </el-form-item>
-    <el-form-item>
+    <el-form-item class="w-100 d-flex justify-content-end">
       <el-button type="primary" @click="createReview">작성</el-button>
     </el-form-item>
   </el-form>
@@ -50,6 +48,7 @@ export default {
       })
         .then(() => {
           this.$store.dispatch('selectMovie', this.$store.state.selectedMovie)
+          this.$emit('is-create')
         })
         .catch(err => {
           console.log(err)

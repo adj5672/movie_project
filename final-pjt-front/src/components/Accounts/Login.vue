@@ -1,13 +1,13 @@
 <template>
-  <el-form status-icon ref="ruleForm" label-width="120px" label-position="top" class="demo-ruleForm container my-4" style="width: 80%;">
+  <el-form status-icon ref="ruleForm" label-width="120px" label-position="top" class="demo-ruleForm container my-3" style="width: 80%;">
     <el-form-item label="" prop="pass">
-      <el-input type="username" v-model="credentials.username" autocomplete="off"></el-input>
+      <el-input type="username" v-model="credentials.username" autocomplete="off" placeholder="아이디"></el-input>
     </el-form-item>
     <el-form-item label="" prop="checkPass">
-      <el-input type="password" v-model="credentials.password" autocomplete="off"></el-input>
+      <el-input type="password" v-model="credentials.password" autocomplete="off" placeholder="비밀번호"></el-input>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="login" style="width: 100%;"><i class="el-icon-switch-button"></i> 로그인</el-button>
+      <el-button type="primary" @click="login" style="width: 100%; font-size: 1.1rem;"><i class="el-icon-switch-button"></i> 로그인</el-button>
     </el-form-item>
   </el-form>
 </template>

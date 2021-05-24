@@ -1,26 +1,38 @@
 <template>
-  <div @click="getReviewDetail" class="card card-hover p-2" style="cursor: pointer;">
-    <div class="d-flex justify-content-between">
-      <div class="flex-column">
-        <h5 class="m-0">{{ review.title }}</h5>
-        <hr class="my-2">
-        <el-rate
-          v-model="review.rank"
-          disabled
-          class="mb-1">
-        </el-rate>
-        <div>Tag: {{ review.tags }}</div>
+  <div @click="getReviewDetail" class="card card-hover p-3 mb-5" style="cursor: pointer;">
+    <div class="d-flex flex-column justify-content-between align-items-start">
+      <div class="d-flex align-items-center px-3 w-100 justify-content-between">
+        <div class="d-flex flex-fill align-items-center">
+          <h5 class="my-auto fw-bold" style="width: 40%;">{{ review.title | titleTruncate }}</h5>
+          <h6 class="my-auto mx-1"><i class="el-icon-user"></i> {{ review.user.username }} ·</h6>
+          <h6 class="my-auto mx-1"><i class="el-icon-chat-dot-round"></i> ({{ review.comment_cnt }}) ·</h6>
+          <el-rate
+            v-model="review.rank"
+            disabled
+            class="my-2 mx-1">
+          </el-rate>
+          <div class="my-auto">
+            <h5 class="my-auto" v-if="review.tags === '기쁨'">· 😀</h5>
+            <h5 class="my-auto" v-else-if="review.tags === '슬픔'">· 😥</h5>
+            <h5 class="my-auto" v-else-if="review.tags === '짜증'">· 🤬</h5>
+            <h5 class="my-auto" v-else-if="review.tags === '심심'">· 🥱</h5>
+            <h5 class="my-auto" v-else>· 😍</h5>
+          </div>
+        </div>
+
+        <div class="my-auto">
+          <div>작성 : {{ createdAt }}</div>
+          <div>수정 : {{ updatedAt }}</div>
+        </div>
       </div>
-      <div>
-        <div>작성자: {{ review.user.username }}</div>
-        <div>생성 시각: {{ createdAt }}</div>
-        <div>수정 시각: {{ updatedAt }}</div>
-      </div>
+      <p class="my-2 text-start p-3">{{ review.content | contentTruncate }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import _ from 'lodash'
+
 export default {
   name: 'Review',
   props: {
@@ -47,6 +59,19 @@ export default {
     updatedAt: function () {
       return this.$moment(this.review.updated_at).format('YY-MM-DD HH:mm')
     }
+  },
+  filters: {
+    titleTruncate: function (text) {
+      return _.truncate(text, {
+        'length': 25
+      })
+    },
+    contentTruncate: function (text) {
+      return _.truncate(text, {
+        'length': 220
+      })
+    },
+
   }
 }
 </script>

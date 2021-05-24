@@ -4,45 +4,57 @@
       title=""
       :visible.sync="$store.state.reviewDialogVisible"
       width="80%"
-      center>
+      center
+      style="min-width: 650px;">
       <div class="container" v-if="review.user">
-        <h1>{{ review.movie.title }}</h1>
+        <h1 class="fw-bold">{{ review.movie.title }}</h1>
         <hr>
         <!-- 리뷰 수정 Form -->
         <el-form v-if="$store.state.userId === review.user.id" ref="form" :model="review" label-width="120px" labelPosition="left">
-          <el-rate v-model="review.rank"></el-rate>
-          <el-form-item label="Tag">
-            <el-select v-model="review.tags" placeholder="please select your zone">
-              <el-option label="기쁨" value="기쁨"></el-option>
-              <el-option label="슬픔" value="슬픔"></el-option>
-              <el-option label="짜증" value="짜증"></el-option>
-              <el-option label="심심" value="심심"></el-option>
-              <el-option label="사랑" value="사랑"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="Title">
+          <div class="d-flex justify-content-between">
+            <div class="d-flex my-auto">
+              <span class="align-self-center">평점</span>
+              <el-rate v-model="review.rank" class="my-auto ms-4"></el-rate>
+              <el-select v-model="review.tags" class="ms-3" placeholder="please select your zone" style="width: 80px;">
+                <el-option label="기쁨" value="기쁨"></el-option>
+                <el-option label="슬픔" value="슬픔"></el-option>
+                <el-option label="짜증" value="짜증"></el-option>
+                <el-option label="심심" value="심심"></el-option>
+                <el-option label="사랑" value="사랑"></el-option>
+              </el-select>
+            </div>
+            <div class="my-auto">
+              <div>작성 : {{ createdAt }}</div>
+              <div>수성 : {{ updatedAt }}</div>
+            </div>
+          </div>
+          <el-form-item label="제목" label-width="50px">
             <el-input v-model="review.title"></el-input>
           </el-form-item>
-          <el-form-item label="Content">
-            <el-input type="textarea" v-model="review.content"></el-input>
+          <el-form-item label="내용" label-width="50px">
+            <el-input type="textarea" v-model="review.content" :autosize="{ minRows: 6, maxRows: 6}"></el-input>
           </el-form-item>
-          <div>생성 시각: {{ createdAt }}</div>
-          <div>수정 시각: {{ updatedAt }}</div>
-          <el-button type="primary" @click="updateReview">수정</el-button>
-          <el-button type="danger" @click="deleteReview">삭제</el-button>
+          <div class="w-100 d-flex justify-content-end">
+            <el-button type="primary" circle @click="updateReview"><i class="el-icon-edit"></i></el-button>
+            <el-button type="danger" circle @click="deleteReview"><i class="el-icon-delete"></i></el-button>
+          </div>
         </el-form>
         <!-- 상세 리뷰 내용 -->
         <el-form v-else>
-          <h3>Title: {{ review.title }}</h3>
+          <div class="d-flex justify-content-between">
+            <h3 class="my-auto fw-bold">제목: {{ review.title }}</h3>
+            <div>
+              <div>작성 : {{ createdAt }}</div>
+              <div>수성 : {{ updatedAt }}</div>
+            </div>
+          </div>
           <el-rate
             v-model="review.rank"
             disabled
             text-color="#ff9900">
           </el-rate>
-          <div>Tag: {{ review.tags }}</div>
-          <div>Content: {{ review.content }}</div>
-          <div>생성: {{ createdAt }}</div>
-          <div>수정: {{ updatedAt }}</div>
+          <div>태그 : {{ review.tags }}</div>
+          <div>내용 : {{ review.content }}</div>
         </el-form>
         <hr>
         <!-- 댓글 Component -->

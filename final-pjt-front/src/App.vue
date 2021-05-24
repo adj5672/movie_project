@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <div id="nav" class="container d-flex justify-content-between align-items-center">
-      <div>
-        <img src="@/assets/logo.png" alt="logo" style="height: 80px;" class="me-5">
+    <div id="nav" class="d-flex justify-content-between align-items-center px-5 mx-5">
+      <div class="d-flex align-items-center">
+        <img src="@/assets/logo.png" alt="logo" style="height: 80px;" class="me-4">
         <router-link class="mx-3" :to="{ name: 'AllMovies' }">전체영화</router-link>
         <router-link class="mx-3" :to="{ name: 'RecommandMovies' }">추천영화</router-link>
       </div>
@@ -54,26 +54,34 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  min-width: 500px;
+  min-width: 600px;
+}
+
+#app input {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
 #nav {
+  font-family: 'Jua', sans-serif;
   padding: 30px;
 }
 
 #nav a {
-  font-weight: bolder;
+  font-weight: bold;
   color: #2c3e50;
   text-decoration-line: none;
+  font-size: 1.5rem;
 }
 
 #nav a.router-link-exact-active {
-  color: #77DAD5;
+  color: red;
 }
 </style>

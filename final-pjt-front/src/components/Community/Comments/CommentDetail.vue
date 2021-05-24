@@ -4,31 +4,23 @@
       title=""
       :visible.sync="$store.state.commentDialogVisible"
       width="90%"
-      center>
-      <!-- <div class="container" v-if="comment.user">
-        <h1>댓글</h1>
-        <hr>
-        <el-form ref="form" :model="comment" label-width="120px" labelPosition="left">
-          <el-form-item label="Content">
-            <el-input type="textarea" v-model="comment.content"></el-input>
-          </el-form-item>
-          <div>생성 시각: {{ comment.created_at }}</div>
-          <div>수정 시각: {{ comment.updated_at }}</div>
-          <el-button type="primary">수정</el-button>
-        </el-form>
-        <hr>
-        <Comment/>
-      </div> -->
+      center
+      style="min-width: 350px;">
       <div class="container">
         <h1>댓글 수정</h1>
         <hr>
         <el-form ref="form" :model="comment" label-width="120px" labelPosition="left">
-          <el-form-item label="Content">
-            <el-input type="textarea" v-model="comment.content"></el-input>
-          </el-form-item>
-          <div>생성 시각: {{ createdAt }}</div>
-          <div>수정 시각: {{ updatedAt }}</div>
-          <el-button @click="updateComment" type="primary">수정</el-button>
+          <el-input type="textarea" v-model="comment.content"></el-input>
+          <div class="d-flex justify-content-between">
+            <div>
+              <el-button @click="updateComment" type="primary" circle><i class="el-icon-edit"></i></el-button>
+              <el-button @click="deleteComment" type="danger" circle><i class="el-icon-delete"></i></el-button>  
+            </div>
+            <div>
+              <p class="my-auto">작성 : {{ createdAt }}</p>
+              <p class="my-auto">수정 : {{ updatedAt }}</p>
+            </div>
+          </div>
         </el-form>
       </div>
     </el-dialog>
@@ -36,6 +28,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'CommentDetail',
   computed: {
@@ -53,7 +47,23 @@ export default {
   methods: {
     updateComment: function () {
       this.$store.state.commentDialogVisible = false
-    }
+    },
+    deleteComment: function () {
+      axios({
+        method: 'DELETE',
+        url: `http://127.0.0.1:8000/community/${this.$store.state.selectedMovie.id}/review/${this.$store.state.selectedReview.id}/comment/${this.comment.id}/`,
+        headers: this.$store.state.config
+      })
+        .then(res => {
+          console.log(res)
+          this.$store.dispatch('selectReview', [this.$store.state.selectedMovie, this.$store.state.selectedReview])
+          this.$store.dispatch('getMyComments')
+          this.$store.state.commentDialogVisible = false
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
   }
   
 }

@@ -1,9 +1,6 @@
 <template>
-  <div class="container">
-    <h1>전체영화</h1>
-    <hr>
+  <div class="container" id="AllMovies">
     <Popularity/>
-    <hr>
     <Romance/>
     <hr>
     <Action/>
@@ -41,5 +38,10 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
+#AllMovies h3 {
+  font-family: 'Do Hyeon', sans-serif;
+  font-weight: bold;
+}
 </style>
