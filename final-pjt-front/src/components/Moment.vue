@@ -1,13 +1,17 @@
 <template>
   <div>
-    <h3>{{ $store.state.Year }} . {{ $store.state.Month }} . {{ $store.state.Day }}</h3>
-    <p>
-      <i class="el-icon-time h1"></i> 
-      <span class="h1"> {{ $store.state.Hour }}</span>
-      <span class="h1"> : </span>
-      <span class="h1">{{ $store.state.Minute }}</span>
-      <span> {{ $store.state.Second }}</span>
-    </p>
+    <div class="text-end" style="width: 90%;">
+      <img src="@/assets/clock.png" alt="clock" class="w-25">
+    </div>
+    <div class="border rounded-3 p-3">
+      <h3 class="fw-bold">{{ $store.state.Year }} . {{ $store.state.Month }} . {{ $store.state.Day }}</h3>
+      <p class="my-auto">
+        <i class="el-icon-time display-5 fw-bold"></i> 
+        <span class="display-5 fw-bold"> {{ $store.state.Hour }}</span>
+        <span class="display-5 fw-bold"> : </span>
+        <span class="display-5 fw-bold">{{ $store.state.Minute }}</span>
+      </p>
+    </div>
   </div>
 </template>
 
@@ -17,6 +21,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

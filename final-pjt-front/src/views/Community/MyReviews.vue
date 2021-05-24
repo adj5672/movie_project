@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <h1>My_Reviews</h1>
+    <h1 class="fw-bold">나의 리뷰</h1>
     <hr>
     <el-row :gutter="24">
       <el-col :span="8" v-for="(review, index) in myReviews" :key="index" class="my-4">
-        <el-card :body-style="{ padding: '10px' }">
+        <el-card :body-style="{ padding: '10px' }" shadow="hover">
           <MyReviewCard :review="review"/>
         </el-card>
       </el-col>

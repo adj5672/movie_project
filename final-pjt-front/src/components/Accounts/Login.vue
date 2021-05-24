@@ -7,7 +7,7 @@
       <el-input type="password" v-model="credentials.password" autocomplete="off"></el-input>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="login" style="width: 100%;">로그인</el-button>
+      <el-button type="primary" @click="login" style="width: 100%;"><i class="el-icon-switch-button"></i> 로그인</el-button>
     </el-form-item>
   </el-form>
 </template>

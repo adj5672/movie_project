@@ -1,5 +1,5 @@
 <template>
-  <div style="padding: 10px;" @click="getReviewDetail">
+  <div style="padding: 10px;" @click="getReviewDetail" class="h-100">
     <h4 class="fw-bold">{{ review.movie.title }}</h4>
     <hr>
     <el-rate

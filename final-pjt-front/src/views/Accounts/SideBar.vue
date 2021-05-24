@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="Sidebar">
     <el-button type="text" @click="drawer = true">
       <img src="@/assets/hamburger.png" alt="" style="height: 30px;">
     </el-button>
@@ -8,14 +8,17 @@
       title="I am the title"
       :visible.sync="drawer"
       :with-header="false"
-      v-if="!$store.state.isLogin">
-      <div class="d-flex flex-column justify-content-between" style="height: 100%;">
+      v-if="!$store.state.isLogin"
+      class="sidebarDrawer">
+      <div class="d-flex flex-column justify-content-between my-3" style="height: 100%;">
         <div class="container">
-          <h2 class="my-3">로그인</h2>
+          <h2 class="my-3 fw-bold">로그인</h2>
           <Login @close-drawer="drawer = false"/>
-          <el-button @click="$router.push('Signup'); drawer=false">회원가입</el-button>
+          <el-button @click="$router.push('Signup'); drawer=false"><i class="el-icon-user-solid"></i> 회원가입</el-button>
         </div>
-        <Moment/>
+        <div class="pb-3">
+          <Moment/>
+        </div>
       </div>
     </el-drawer>
 
@@ -24,20 +27,24 @@
       :visible.sync="drawer"
       :with-header="false"
       v-else>
-      <div class="d-flex flex-column justify-content-between" style="height: 100%;">
+      <div class="d-flex flex-column justify-content-between" style="height: 100%;" >
         <div>
-          <div class="my-4">
+          <div class="my-3">
             <img src="@/assets/profile_image.png" alt="profile" style="width: 50%;">
-            <h1>Hello, {{ $store.state.username }}</h1>
+            <h1 class="fw-bold"><i class="el-icon-user"></i> {{ $store.state.username }}</h1>
           </div>
           <div class="d-flex flex-column align-items-center">
-            <el-button @click="myMovies" type="primary" style="width: 80%;">나만의 영화들</el-button>
-            <br>
-            <el-button @click="myReviews" type="success" style="width: 80%;">나의 리뷰들</el-button>
-            <br>
-            <el-button @click="myComments" type="warning" style="width: 80%;">나의 댓글들</el-button>
-            <br>
-            <el-button @click="logout" type="danger" style="width: 80%;">로그아웃</el-button>
+            <div class="d-flex flex-column flex-xl-row w-75">
+              <el-button @click="myMovies" type="primary" class="w-100 me-xl-3"><i class="el-icon-video-camera-solid"></i> 나만의 영화</el-button>
+              <br>
+              <el-button @click="myReviews" type="success" class="w-100"><i class="el-icon-document"></i> 나의 리뷰</el-button>
+            </div>
+            <div class="d-flex flex-column flex-xl-row w-75 mt-xl-3">
+              <br>
+              <el-button @click="myComments" type="warning" class="w-100 me-xl-3"><i class="el-icon-chat-dot-round"></i> 나의 댓글</el-button>
+              <br>
+              <el-button  l-button @click="logout" type="danger" class="w-100"><i class="el-icon-switch-button"></i> 로그아웃</el-button>
+            </div>
           </div>
         </div>
         <Moment/>

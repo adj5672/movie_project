@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <h1>My_Comments</h1>
+    <h1 class="fw-bold">나의 댓글</h1>
     <hr>
     <el-row :gutter="24">
       <el-col :span="6" v-for="(comment, idx) in myComments" :key="idx" class="my-4">
-        <el-card :body-style="{ padding: '10px' }">
+        <el-card :body-style="{ padding: '10px' }" shadow="hover">
           <MyCommentCard :comment="comment"/>
         </el-card>
       </el-col>
