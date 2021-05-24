@@ -8,9 +8,9 @@
       <option value="사랑">사랑</option>
     </select>
     <button @click="getTagMovies">선택</button>
-    <carousel-3d v-if="$store.state.movies.tag_movies.length > 0">
+    <carousel-3d v-if="$store.state.movies.tag_movies.length > 0" :display=7 :space=250 :width=280 :height=400 :controls-visible="true" @after-slide-change="movieIndex">
       <slide v-for="(movie, i) in tagMovies" :index="i" :key="i">
-        <TagCarousel :movie="movie" :index="i"/>
+        <TagCarousel :movie="movie" :index="i" :centerIndex="centerIndex"/>
       </slide>
     </carousel-3d>
   </div>
@@ -24,6 +24,7 @@ export default {
   data: function () {
     return {
       selectTag: '기쁨',
+      centerIndex: 0,
     }
   },
   components: {
@@ -32,7 +33,11 @@ export default {
   methods: {
     getTagMovies: function () {
       this.$store.dispatch('getTagMovies', this.selectTag)
-    }
+    },
+    movieIndex: function (data) {
+      this.centerIndex = data
+      // console.log(data)
+    },
   },
   computed: {
     tagMovies: function () {

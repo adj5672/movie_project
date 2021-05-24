@@ -8,7 +8,13 @@
       <div class="d-flex">
         <img :src="posterSrc" alt="image" style="width: 40%;">
         <div class="p-3">
-          <h1>{{ movie.title }}</h1>
+          <div class="d-flex">
+            <h1>{{ movie.title }}</h1>
+            <div>
+              <button class="btn" v-if="$store.state.selectedMovie.isLike" @click="likeMovie"><font-awesome-icon style="color:crimson;" :icon="['fas','heart']"/></button>
+              <button class="btn" v-else @click="likeMovie"><font-awesome-icon :icon="['far','heart']"/></button>
+            </div>
+          </div>
           <span>{{ movie.release_date }}</span>
           <br>
           <span v-for="(genre, idx) in movie.genres" :key="idx" class="me-2 fw-bold">#{{ genre.name }}</span>
@@ -20,10 +26,6 @@
             text-color="#ff9900">
           </el-rate>
           <br>
-          <div>
-            <button v-if="$store.state.selectedMovie.isLike" @click="likeMovie">좋아요 취소</button>
-            <button v-else @click="likeMovie">좋아요</button>
-          </div>
           <p>{{ movie.overview }}</p>
           <p>{{ movie.review_cnt }}명 중에 "{{ movie.tag_count }}"명의 사람들이 이 영화를 보고 <button>#{{ movie.most_tag }}</button> 을 느꼈습니다.</p>
           <hr>
