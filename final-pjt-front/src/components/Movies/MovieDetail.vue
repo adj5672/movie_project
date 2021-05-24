@@ -90,7 +90,6 @@ export default {
     },
     movePage : function (page) {
       this.page = page
-      console.log(this.page)
     }
   }
 }

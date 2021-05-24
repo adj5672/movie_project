@@ -43,10 +43,10 @@ export default {
       return this.$store.state.selectedComment
     },
     createdAt: function () {
-      return this.$moment(this.comment.created_at).format('YY-MM-DD HH:mm:ss')
+      return this.$moment(this.comment.created_at).format('YY-MM-DD HH:mm')
     },
     updatedAt: function () {
-      return this.$moment(this.comment.updated_at).format('YY-MM-DD HH:mm:ss')
+      return this.$moment(this.comment.updated_at).format('YY-MM-DD HH:mm')
     },
 
   },
