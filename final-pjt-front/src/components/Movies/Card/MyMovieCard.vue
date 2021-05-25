@@ -1,8 +1,12 @@
 <template>
-  <div>
-    <img :src="posterSrc" class="image" style="width: 100%;" @click="getDialog">
-    <div style="padding: 10px;">
-        <span class="fw-bold">{{ movie.title }}</span>
+
+  <div class="col" @click="getDialog" style="padding: 20px; min-width: 196px;">
+    <div class="card h-100">
+      <img :src="posterSrc" class="card-img-top px-3 pt-3" alt="image">
+      <div class="card-body d-flex flex-column justify-content-between">
+        <h5 class="card-title fw-bold">{{ movie.title }}</h5>
+        <span>{{ movie.release_date }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -29,6 +33,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Stylish&display=swap');
 
+h5, span {
+  font-family: 'Stylish', sans-serif;
+}
 </style>

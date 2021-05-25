@@ -11,7 +11,6 @@
     <p>{{ review.content | stringTruncate }}</p>
     <p>{{ review.tags }}</p>
     <p>댓글 ({{ review.comment_cnt }})</p>
-    <!-- <p>{{ review }}</p> -->
   </div>
 </template>
 

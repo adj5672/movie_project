@@ -1,14 +1,15 @@
 <template>
-  <div class="container">
-    <h1 class="fw-bold">나만의 영화</h1>
+  <div id="MyMovies">
+    <h1 class="display-3"><i class="el-icon-video-camera-solid"></i> 나만의 영화</h1>
     <br>
-    <el-row :gutter="24">
-      <el-col :span="6" v-for="(movie, index) in myMovies" :key="index" class="my-4">
-        <el-card :body-style="{ padding: '10px' }" shadow="hover">
+    <div class="row row-cols-4 g-4" style="margin-left: 4rem; margin-right: 4rem;">
+      <MyMovieCard :movie="movie" v-for="(movie, index) in myMovies" :key="index" />
+      <!-- <el-col :span="6" v-for="(movie, index) in myMovies" :key="index" class="my-4">
+        <el-card :body-style="{ padding: '0px' }" shadow="hover" class="border">
           <MyMovieCard :movie="movie"/>
         </el-card>
-      </el-col>
-    </el-row>
+      </el-col> -->
+    </div>
   </div>
 </template>
 
@@ -32,6 +33,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Stylish&display=swap');
+
+#MyMovies h1 {
+  font-family: 'Black Han Sans', sans-serif;
+}
 
 </style>

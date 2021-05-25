@@ -2,9 +2,10 @@
   <el-dialog
     :title="''"
     :visible.sync="$store.state.centerDialogVisible"
-    width="980px"
+    width="90%"
     center
-    id="MovieDetail">
+    id="MovieDetail"
+    style="min-width: 1100px;">
     <div class="px-5">
       <!-- 영화 포스터 및 소개 카드 -->
       <div class="d-flex" style="height: 500px">
@@ -41,7 +42,7 @@
             >
             </el-rate>
             <h5 class="fw-bold mt-3">줄거리</h5>
-            <p v-if="movie.overview" style="font-style: italic;">{{ movie.overview }}</p>
+            <p v-if="movie.overview">{{ movie.overview }}</p>
             <p v-else style="font-style: italic;">해당 영화는 줄거리가 없습니다...</p>
           </div>
           <p class="my-0" id="mostTag"><span class="fs-5 p-1 fw-bold">{{ movie.review_cnt }}</span>명 중에 "<span class="fs-5 p-1 fw-bold" style="color:orange">{{ movie.tag_count }}</span>"명의 사람들이 이 영화를 보고 <span class="p-1 fs-5 fw-bold" style="color:orange">#{{ movie.most_tag }}</span>을 느꼈습니다.</p>
