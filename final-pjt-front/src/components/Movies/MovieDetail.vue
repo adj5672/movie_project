@@ -2,6 +2,7 @@
   <el-dialog
     :title="''"
     :visible.sync="$store.state.centerDialogVisible"
+    :before-close="handleClose"
     width="90%"
     center
     id="MovieDetail"
@@ -132,6 +133,10 @@ export default {
           message: '성공적으로 리뷰가 작성되었습니다.',
           type: 'success'
       })
+    },
+    handleClose: function (done) {
+      done()
+      this.$emit('updateMyMovies')
     }
   },
   filters: {
@@ -140,7 +145,7 @@ export default {
         'length': 200
       })
     }
-  }
+  },
 }
 </script>
 

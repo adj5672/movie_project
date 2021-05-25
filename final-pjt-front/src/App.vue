@@ -9,7 +9,7 @@
       <SideBar/>
     </div>
     <router-view/>
-    <MovieDetail/>
+    <MovieDetail @updateMyMovies="updateMyMovies"/>
     <ReviewDetail/>
     <CommentDetail/>
   </div>
@@ -37,6 +37,9 @@ export default {
       this.$store.state.Hour = this.$moment().format('HH')
       this.$store.state.Minute = this.$moment().format('mm')
       this.$store.state.Second = this.$moment().format('ss')
+    },
+    updateMyMovies: function () {
+      this.$store.dispatch('getMyMovies')
     }
   },
   created: function () {

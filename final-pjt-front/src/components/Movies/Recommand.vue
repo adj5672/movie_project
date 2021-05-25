@@ -12,7 +12,8 @@
     </div>
     <carousel-3d v-if="$store.state.movies.tag_movies.length" :display=7 :space=250 :width=280 :height=400 :controls-visible="true" @after-slide-change="movieIndex">
       <slide v-for="(movie, i) in tagMovies" :index="i" :key="i" class="rounded-3 border">
-        <TagCarousel :movie="movie" :index="i" :centerIndex="centerIndex"/>
+        <TagCarousel :movie="movie" style="cursor: pointer" :index="i" :centerIndex="centerIndex"/>
+        <button class="btn position-absolute top-0 end-0" :style="heartVisible(movie)"><font-awesome-icon size="lg" style="color:crimson;" :icon="['fas','heart']"/></button>
       </slide>
     </carousel-3d>
   </div>
@@ -20,6 +21,7 @@
 
 <script>
 import TagCarousel from '@/components/Movies/Carousel/TagCarousel'
+import _ from 'lodash'
 
 export default {
   name: 'Recommand',
@@ -35,19 +37,40 @@ export default {
   methods: {
     getTagMovies: function () {
       this.$store.dispatch('getTagMovies', this.selectTag)
+      this.$emit('changeTag', this.selectTag)
     },
     movieIndex: function (data) {
       this.centerIndex = data
       // console.log(data)
     },
+    heartVisible: function (movie) {
+      var tmp = 0
+      _.forEach((this.myMovies), function(myMovie) {
+        if (movie.id === myMovie.id) {
+          tmp = 1
+        }
+      })
+      if (tmp === 1) {
+        return { visibility: 'visible' }
+      } else {
+        return { visibility: 'hidden' }
+      }
+    },
+    changeTag: function () {
+      this.$emit('changeTag', this.selectTag)
+    }
   },
   computed: {
     tagMovies: function () {
       return this.$store.state.movies.tag_movies
     },
+    myMovies: function () {
+      return this.$store.state.myMovies
+    }
   },
   created: function () {
     this.getTagMovies()
+    this.$store.dispatch('getMyMovies')
   }
 }
 </script>
