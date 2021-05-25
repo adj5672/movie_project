@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>로맨스 영화 <img src="@/assets/genreIcons/romance.png" alt="icon" style="height: 2rem;"></h3>
+    <h1>로맨스 영화 <img src="@/assets/genreIcons/romance.png" alt="icon" style="height: 3rem;"></h1>
     <ul>
       <li v-for="(movie, idx) in romance" :key="idx">
         {{ movie.title }}

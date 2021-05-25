@@ -1,5 +1,5 @@
 <template>
-  <div class="container" id="AllMovies">
+  <div id="AllMovies" style="margin-left: 15%; margin-right: 15%;">
     <Popularity/>
     <Romance/>
     <hr>
@@ -43,7 +43,7 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
-#AllMovies h3 {
+#AllMovies h1 {
   font-family: 'Do Hyeon', sans-serif;
   font-weight: bold;
 }
