@@ -1,7 +1,7 @@
 <template>
   <div class="col" @click="getDialog" style="padding: 20px; min-width: 196px;">
     <div class="card card-hover h-100 shadow" style="cursor: pointer;">
-      <img :src="posterSrc" class="card-img-top px-3 pt-3" alt="image">
+      <img :src="posterSrc" class="card-img-top px-3 pt-3" alt="image" @error="defaultImage">
       <div class="card-body d-flex flex-column justify-content-between align-items-center">
         <h5 class="card-title fw-bold mb-1">{{ movie.title }}</h5>
         <div class="d-flex flex-wrap w-100 justify-content-center">
@@ -23,7 +23,8 @@ export default {
   },
   data: function () {
     return {
-      mouseover: false
+      mouseover: false,
+      defaultSrc: require("@/assets/default.png")
     }
   },
   computed: {
@@ -38,6 +39,9 @@ export default {
     },
     mouseOver: function () {
       this.mouseover = true
+    },
+    defaultImage: function (event) {
+      event.target.src = this.defaultSrc
     }
   }
 }

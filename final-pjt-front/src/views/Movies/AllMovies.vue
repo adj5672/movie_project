@@ -1,16 +1,12 @@
 <template>
   <div>
-    <div class="container" id="AllMovies">
-      <Popularity/>
-      <Romance/>
-      <hr>
-      <Action/>
-      <hr>
-      <Fantasy/>
-      <hr>
-      <Horror/>
-      <hr>
-      <Comedy/>
+    <div id="AllMovies" style="margin-left: 15%; margin-right: 15%;">
+    <Popularity/>
+    <Romance/>
+    <Action/>
+    <Fantasy/>
+    <Horror/>
+    <Comedy/>
     </div>
   </div>
 </template>

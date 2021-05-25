@@ -1,5 +1,5 @@
 <template>
-  <img :src="posterSrc" style="height: 100%;" @click="getDialog">
+  <img :src="posterSrc" style="height: 100%;" @click="getDialog" @error="defaultImage">
 </template>
 
 <script>
@@ -28,9 +28,16 @@ export default {
         this.$store.dispatch('selectMovie', this.movie)
       }
       this.$emit('movie-index', this.index)
+    },
+    defaultImage: function (event) {
+      event.target.src = this.defaultSrc
+    }
+  },
+  data: function () {
+    return {
+      defaultSrc: require("@/assets/default.png")
     }
   }
-
 }
 </script>
 

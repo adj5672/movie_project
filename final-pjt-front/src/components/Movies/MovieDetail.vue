@@ -6,13 +6,13 @@
     width="90%"
     center
     id="MovieDetail"
-    style="min-width: 1100px;">
+    style="min-width: 1120px;">
     <div class="px-5">
       <!-- 영화 포스터 및 소개 카드 -->
       <div class="d-flex" style="height: 500px">
         <!-- 영화 포스터 -->
         <div class="mx-2" style="height: 100%;">
-          <img :src="posterSrc" alt="image" style="height:100%; opacity:1;" class="rounded-3">
+          <img :src="posterSrc" alt="image" style="height:100%; opacity:1;" @error="defaultImage" class="rounded-3">
         </div>
         <!-- 소개 카드 -->
         <div class="card p-4 d-flex flex-fill flex-column justify-content-between" >
@@ -95,6 +95,7 @@ export default {
     return {
       page: 1,
       isCreate: false,
+      defaultSrc: require("@/assets/default.png")
     }
   },
   components: {
@@ -137,6 +138,9 @@ export default {
     handleClose: function (done) {
       done()
       this.$emit('updateMyMovies')
+    },
+    defaultImage: function (event) {
+      event.target.src = this.defaultSrc
     }
   },
   filters: {
