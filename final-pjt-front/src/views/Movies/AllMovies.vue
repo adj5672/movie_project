@@ -31,6 +31,9 @@ export default {
     Horror,
     Comedy
   },
+  updated: function () {
+    this.$store.dispatch('getAllMovies')
+  },
   created: function () {
     this.$store.dispatch('getAllMovies')
   }
