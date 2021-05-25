@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="feeling" :style="backgroundColor">오늘의 기분은 어떠신가요?</h1>
+    <h1 class="feeling fw-bold" :style="backgroundColor">오늘의 기분은 어떠신가요?</h1>
     <Recommand @changeTag="changeTag"/>
   </div>
 </template>
@@ -37,7 +37,10 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
+
   .feeling {
     transition-duration: 2s; 
+    font-family: 'Hi Melody', cursive;
   }
 </style>

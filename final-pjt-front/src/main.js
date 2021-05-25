@@ -13,6 +13,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { far } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { VueFeedbackReaction } from 'vue-feedback-reaction'
 
 library.add(fas)
 library.add(far)
@@ -25,6 +26,7 @@ Vue.use(ElementUI)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(Carousel3d)
+Vue.use(VueFeedbackReaction)
 
 new Vue({
   router,

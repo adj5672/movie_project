@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="py-auto">
     <div id="nav" class="d-flex justify-content-between align-items-center px-5 mx-5">
       <div class="d-flex align-items-center">
         <img src="@/assets/logo.png" alt="logo" style="height: 80px;" class="me-4">

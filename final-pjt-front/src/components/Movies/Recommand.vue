@@ -8,9 +8,10 @@
         <el-option value="심심">심심</el-option>
         <el-option value="사랑">사랑</el-option>
       </el-select>
-      <el-button @click="getTagMovies" type="primary">선택</el-button>
+      <vue-reaction-emoji :reaction="reaction" :is-active="isActive" :is-disabled="isDisabled"/>
+      <button class="btn color" @click="getTagMovies" :style="backgroundColor">선택</button>
     </div>
-    <carousel-3d v-if="$store.state.movies.tag_movies.length" :display=7 :space=250 :width=280 :height=400 :controls-visible="true" @after-slide-change="movieIndex">
+    <carousel-3d class="p-3 color" :style="borderColor" v-if="$store.state.movies.tag_movies.length" :display=7 :space=250 :width=280 :height=400 :controls-visible="true" @after-slide-change="movieIndex">
       <slide v-for="(movie, i) in tagMovies" :index="i" :key="i" class="rounded-3 border">
         <TagCarousel :movie="movie" style="cursor: pointer" :index="i" :centerIndex="centerIndex"/>
         <button class="btn position-absolute top-0 end-0" :style="heartVisible(movie)"><font-awesome-icon size="lg" style="color:crimson;" :icon="['fas','heart']"/></button>
@@ -22,6 +23,7 @@
 <script>
 import TagCarousel from '@/components/Movies/Carousel/TagCarousel'
 import _ from 'lodash'
+import { VueReactionEmoji } from 'vue-feedback-reaction'
 
 export default {
   name: 'Recommand',
@@ -29,14 +31,35 @@ export default {
     return {
       selectTag: '기쁨',
       centerIndex: 0,
+      color: '#ffc168',
+      reaction: {
+        type: String,
+        default: 'natural',
+        validator: (v) => (['hate', 'disappointed', 'natural', 'good', 'excellent'].includes(v))
+      },
+      isActive: false,
+      isDisabled: false
     }
   },
   components: {
-    TagCarousel
+    TagCarousel,
+    VueReactionEmoji,
   },
   methods: {
     getTagMovies: function () {
       this.$store.dispatch('getTagMovies', this.selectTag)
+      if (this.selectTag === '기쁨') {
+        this.color = '#ffc168' // 노랑
+      } else if ( this.selectTag === '슬픔') {
+        this.color = '#8e43e7' // 보라
+      } else if ( this.selectTag === '짜증') {
+        this.color = '#b84592' // 빨강
+      } else if ( this.selectTag === '심심') {
+        this.color = '#050f2c' // 검정 or 갈색 
+      } else if ( this.selectTag === '사랑') {
+        this.color = '#ff4f81' // 핑크
+      } 
+      console.log(this.color)
       this.$emit('changeTag', this.selectTag)
     },
     movieIndex: function (data) {
@@ -56,9 +79,6 @@ export default {
         return { visibility: 'hidden' }
       }
     },
-    changeTag: function () {
-      this.$emit('changeTag', this.selectTag)
-    }
   },
   computed: {
     tagMovies: function () {
@@ -66,6 +86,12 @@ export default {
     },
     myMovies: function () {
       return this.$store.state.myMovies
+    },
+    borderColor: function () {
+      return {'border' : `5px solid ${this.color}`}
+    },
+    backgroundColor: function () {
+      return {'color': `${this.color}`}
     }
   },
   created: function () {
@@ -76,5 +102,7 @@ export default {
 </script>
 
 <style>
-
+  .color {
+    transition-duration: 2s; 
+  }
 </style>
