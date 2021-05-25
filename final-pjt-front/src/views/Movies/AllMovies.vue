@@ -2,13 +2,9 @@
   <div id="AllMovies" style="margin-left: 15%; margin-right: 15%;">
     <Popularity/>
     <Romance/>
-    <hr>
     <Action/>
-    <hr>
     <Fantasy/>
-    <hr>
     <Horror/>
-    <hr>
     <Comedy/>
   </div>
 </template>
