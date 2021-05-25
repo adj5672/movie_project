@@ -5,7 +5,7 @@
       <slide v-for="(movie, i) in popularity" :index="i" :key="i" class="rounded-3 border">
         <div class="position-relative">
           <PopularityCarousel style="cursor: pointer" :movie="movie" :index="i" :centerIndex="centerIndex"/>
-          <button class="btn position-absolute top-0 end-0"><font-awesome-icon style="color:crimson;" :icon="['fas','heart']"/></button>
+          <button class="btn position-absolute top-0 end-0" :style="heartVisible(movie)"><font-awesome-icon style="color:crimson;" :icon="['fas','heart']"/></button>
         </div>
       </slide>
     </carousel-3d>
@@ -14,6 +14,7 @@
 
 <script>
 import PopularityCarousel from '@/components/Movies/Carousel/PopularityCarousel'
+import _ from 'lodash'
 
 export default {
   name: 'Popularity',
@@ -26,7 +27,7 @@ export default {
     },
     myMovies: function () {
       return this.$store.state.myMovies
-    }
+    },
   },
   data: function () {
     return {
@@ -38,7 +39,27 @@ export default {
       this.centerIndex = data
       // console.log(data)
     },
+    heartVisible: function (movie) {
+      console.log(movie.id)
+      console.log(this.myMovies)
+      var tmp = 0
+      _.forEach((this.myMovies), function(myMovie) {
+        if (movie.id === myMovie.id) {
+          tmp = 1
+        }
+      })
+      if (tmp === 1) {
+        return { visibility: 'visible' }
+      } else {
+        return { visibility: 'hidden' }
+      }
+    }
   },
+  created: function () {
+    this.$store.dispatch('getMyMovies')
+    // console.log(this.$store.state.myMovies)
+  }
+  
 }
 </script>
 
