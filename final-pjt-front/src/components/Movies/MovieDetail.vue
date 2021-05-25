@@ -14,7 +14,7 @@
           <img :src="posterSrc" alt="image" style="height:100%; opacity:1;" class="rounded-3">
         </div>
         <!-- 소개 카드 -->
-        <div class="card p-4 d-flex flex-column justify-content-between" >
+        <div class="card p-4 d-flex flex-fill flex-column justify-content-between" >
           <div>
             <div class="d-flex">
               <div class="d-flex align-items-center">

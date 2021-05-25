@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>공포 영화</h3>
+    <h3>공포 영화 <img src="@/assets/genreIcons/horror.png" alt="icon" style="height: 2rem;"></h3>
     <ul>
       <li v-for="(movie, idx) in horror" :key="idx">
         {{ movie.title }}

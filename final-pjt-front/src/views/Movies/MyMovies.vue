@@ -4,11 +4,6 @@
     <br>
     <div class="row row-cols-4 g-4" style="margin-left: 4rem; margin-right: 4rem;">
       <MyMovieCard :movie="movie" v-for="(movie, index) in myMovies" :key="index" />
-      <!-- <el-col :span="6" v-for="(movie, index) in myMovies" :key="index" class="my-4">
-        <el-card :body-style="{ padding: '0px' }" shadow="hover" class="border">
-          <MyMovieCard :movie="movie"/>
-        </el-card>
-      </el-col> -->
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>액션 영화</h3>
+    <h3>액션 영화 <img src="@/assets/genreIcons/action.png" alt="icon" style="height: 2rem;"></h3>
     <ul>
       <li v-for="(movie, idx) in action" :key="idx">
         {{ movie.title }}

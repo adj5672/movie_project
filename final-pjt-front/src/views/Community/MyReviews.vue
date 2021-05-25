@@ -1,14 +1,10 @@
 <template>
-  <div class="container">
-    <h1 class="fw-bold">나의 리뷰</h1>
-    <hr>
-    <el-row :gutter="24">
-      <el-col :span="8" v-for="(review, index) in myReviews" :key="index" class="my-4">
-        <el-card :body-style="{ padding: '10px' }" shadow="hover">
-          <MyReviewCard :review="review"/>
-        </el-card>
-      </el-col>
-    </el-row>
+  <div id="MyReviews">
+    <h1 class="display-3"><i class="el-icon-document"></i> 나의 영화 리뷰</h1>
+    <br>
+    <div class="row row-cols-3 g-4" style="margin-left: 4rem; margin-right: 4rem;">
+      <MyReviewCard :review="review" v-for="(review, index) in myReviews" :key="index" />
+    </div>
   </div>
 </template>
 
@@ -31,6 +27,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Stylish&display=swap');
+
+#MyReviews h1 {
+  font-family: 'Black Han Sans', sans-serif;
+}
 
 </style>

@@ -71,7 +71,6 @@ export default {
         'length': 220
       })
     },
-
   }
 }
 </script>

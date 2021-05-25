@@ -40,8 +40,6 @@ export default {
       // console.log(data)
     },
     heartVisible: function (movie) {
-      console.log(movie.id)
-      console.log(this.myMovies)
       var tmp = 0
       _.forEach((this.myMovies), function(myMovie) {
         if (movie.id === myMovie.id) {

@@ -8,7 +8,7 @@
       </div>
       <SideBar/>
     </div>
-    <router-view/>
+    <router-view class="mb-5"/>
     <MovieDetail/>
     <ReviewDetail/>
     <CommentDetail/>

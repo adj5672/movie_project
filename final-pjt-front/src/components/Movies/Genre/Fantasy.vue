@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>판타지 영화</h3>
+    <h3>판타지 영화 <img src="@/assets/genreIcons/fantasy.png" alt="icon" style="height: 2rem;"></h3>
     <ul>
       <li v-for="(movie, idx) in fantasy" :key="idx">
         {{ movie.title }}
