@@ -1,15 +1,8 @@
 <template>
-  <div id="MyComments">
+  <div id="MyComments" style="margin-left: 15%; margin-right: 15%;">
     <h1 class="display-3"><i class="el-icon-chat-dot-round"></i> 나의 댓글</h1>
     <br>
-    <!-- <el-row :gutter="24">
-      <el-col :span="6" v-for="(comment, idx) in myComments" :key="idx" class="my-4">
-        <el-card :body-style="{ padding: '10px' }" shadow="hover">
-          <MyCommentCard :comment="comment"/>
-        </el-card>
-      </el-col>
-    </el-row> -->
-    <div class="row row-cols-4 g-4" style="margin-left: 4rem; margin-right: 4rem;">
+    <div class="row row-cols-3 g-4" style="margin-left: 4rem; margin-right: 4rem;">
       <MyCommentCard :comment="comment" v-for="(comment, index) in myComments" :key="index" />
     </div>
   </div>

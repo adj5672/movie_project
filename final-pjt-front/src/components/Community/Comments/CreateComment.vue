@@ -2,7 +2,7 @@
   <div>
     <el-form ref="form" :model="form" label-width="120px" labelPosition="left" class="d-flex justify-content-end align-items-center mb-3">
       <el-input @keyup.enter="createComment" type="textarea" v-model="form.content" class="my-auto me-3"></el-input>
-      <el-button type="primary" @click="createComment">작성</el-button>
+      <el-button class="Sans" type="primary" @click="createComment">작성</el-button>
     </el-form>
   </div>
 </template>

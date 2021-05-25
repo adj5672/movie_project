@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="fw-bold my-4"><i class="el-icon-chat-dot-round"></i> 댓글 ({{ $store.state.selectedReview.comment_cnt }})</h3>
+    <h3 class="my-4 Jua"><i class="el-icon-chat-dot-round"></i> 댓글 ({{ $store.state.selectedReview.comment_cnt }})</h3>
     <CreateComment/>
     <CommentList v-for="(comment, idx) in paginatedComments" :key="idx" :comment="comment"/>
     <el-pagination

@@ -3,9 +3,9 @@
     <div class="d-flex flex-column justify-content-between align-items-start">
       <div class="d-flex align-items-center px-3 w-100 justify-content-between">
         <div class="d-flex flex-fill align-items-center">
-          <h5 class="my-auto fw-bold" style="width: 40%;">{{ review.title | titleTruncate }}</h5>
-          <h6 class="my-auto mx-1"><i class="el-icon-user"></i> {{ review.user.username }} ·</h6>
-          <h6 class="my-auto mx-1"><i class="el-icon-chat-dot-round"></i> ({{ review.comment_cnt }}) ·</h6>
+          <h5 class="my-auto fw-bold Jua text-primary" style="width: 40%;">{{ review.title | titleTruncate }}</h5>
+          <h6 class="my-auto mx-1 Sans"><i class="el-icon-user"></i> {{ review.user.username }} ·</h6>
+          <h6 class="my-auto mx-1 Sans"><i class="el-icon-chat-dot-round"></i> ({{ review.comment_cnt }}) ·</h6>
           <el-rate
             v-model="review.rank"
             disabled
@@ -21,11 +21,11 @@
         </div>
 
         <div class="my-auto">
-          <div>작성 : {{ createdAt }}</div>
-          <div>수정 : {{ updatedAt }}</div>
+          <div class="Sans">작성 : {{ createdAt }}</div>
+          <div class="Sans">수정 : {{ updatedAt }}</div>
         </div>
       </div>
-      <p class="my-2 text-start p-3">{{ review.content | contentTruncate }}</p>
+      <p class="Sans my-2 text-start p-3">{{ review.content | contentTruncate }}</p>
     </div>
   </div>
 </template>

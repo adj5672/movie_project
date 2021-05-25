@@ -1,7 +1,7 @@
 <template>
   <div style="margin-bottom: 5rem;">
     <h1>로맨스 영화 <img src="@/assets/genreIcons/romance.png" alt="icon" style="height: 3rem;"></h1>
-    <carousel-3d v-if="romance.length" :autoplay=true :autoplayTimeout=5000 :display=7 :space=220 :width=210 :height=300 :controls-visible="true" @after-slide-change="movieIndex">
+    <carousel-3d v-if="romance.length" class="my-auto" :autoplay=true :autoplayTimeout=5000 :display=7 :space=280 :width=245 :height=350 :controls-visible="true" @after-slide-change="movieIndex">
       <slide v-for="(movie, i) in romance" :index="i" :key="i" class="rounded-3 border">
         <div class="position-relative" style="height: 100%;">
           <RomanceCarousel style="cursor: pointer" :movie="movie" :index="i" :centerIndex="centerIndex" @updateMyMovies="updateMyMovies"/>

@@ -1,7 +1,7 @@
 <template>
   <div style="margin-bottom: 5rem;">
     <h1>공포 영화 <img src="@/assets/genreIcons/horror.png" alt="icon" style="height: 3rem;"></h1>
-    <carousel-3d v-if="horror.length" :autoplay=true :autoplayTimeout=5000 :display=7 :space=220 :width=210 :height=300 :controls-visible="true" @after-slide-change="movieIndex">
+    <carousel-3d v-if="horror.length" class="my-auto" :autoplay=true :autoplayTimeout=5000 :display=7 :space=280 :width=245 :height=350 :controls-visible="true" @after-slide-change="movieIndex">
       <slide v-for="(movie, i) in horror" :index="i" :key="i" class="rounded-3 border">
         <div class="position-relative" style="height: 100%;">
           <HorrorCarousel style="cursor: pointer" :movie="movie" :index="i" :centerIndex="centerIndex" @updateMyMovies="updateMyMovies"/>

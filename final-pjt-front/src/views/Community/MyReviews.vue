@@ -1,5 +1,5 @@
 <template>
-  <div id="MyReviews">
+  <div id="MyReviews" style="margin-left: 15%; margin-right: 15%;">
     <h1 class="display-3"><i class="el-icon-document"></i> 나의 영화 리뷰</h1>
     <br>
     <div class="row row-cols-3 g-4" style="margin-left: 4rem; margin-right: 4rem;">

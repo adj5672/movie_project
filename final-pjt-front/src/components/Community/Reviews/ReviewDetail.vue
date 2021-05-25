@@ -3,11 +3,11 @@
     <el-dialog
       title=""
       :visible.sync="$store.state.reviewDialogVisible"
-      width="80%"
+      width="900px"
       center
       style="min-width: 650px;">
       <div class="container" v-if="review.user">
-        <h1 class="fw-bold">{{ review.movie.title }}</h1>
+        <h1 class="fw-bold SansBold text-dark">{{ review.movie.title }}</h1>
         <hr>
         <!-- 리뷰 수정 Form -->
         <el-form v-if="$store.state.userId === review.user.id" ref="form" :model="review" label-width="120px" labelPosition="left">
@@ -24,8 +24,8 @@
               </el-select>
             </div>
             <div class="my-auto">
-              <div>작성 : {{ createdAt }}</div>
-              <div>수성 : {{ updatedAt }}</div>
+              <div class="Sans">작성 : {{ createdAt }}</div>
+              <div class="Sans">수성 : {{ updatedAt }}</div>
             </div>
           </div>
           <el-form-item label="제목" label-width="50px">
@@ -42,19 +42,27 @@
         <!-- 상세 리뷰 내용 -->
         <el-form v-else>
           <div class="d-flex justify-content-between">
-            <h3 class="my-auto fw-bold">제목: {{ review.title }}</h3>
+            <h3 class="my-auto fw-bold Jua">{{ review.title }}</h3>
             <div>
-              <div>작성 : {{ createdAt }}</div>
-              <div>수성 : {{ updatedAt }}</div>
+              <div class="Sans">작성 : {{ createdAt }}</div>
+              <div class="Sans">수성 : {{ updatedAt }}</div>
             </div>
           </div>
-          <el-rate
-            v-model="review.rank"
-            disabled
-            text-color="#ff9900">
-          </el-rate>
-          <div>태그 : {{ review.tags }}</div>
-          <div>내용 : {{ review.content }}</div>
+          <div class="d-flex mb-4">
+            <el-rate
+              v-model="review.rank"
+              disabled
+              text-color="#ff9900">
+            </el-rate>
+            <div class="my-auto">
+              <h5 class="my-auto" v-if="review.tags === '기쁨'">· 😀</h5>
+              <h5 class="my-auto" v-else-if="review.tags === '슬픔'">· 😥</h5>
+              <h5 class="my-auto" v-else-if="review.tags === '짜증'">· 🤬</h5>
+              <h5 class="my-auto" v-else-if="review.tags === '심심'">· 🥱</h5>
+              <h5 class="my-auto" v-else>· 😍</h5>
+            </div>
+          </div>
+          <div class="Sans">{{ review.content }}</div>
         </el-form>
         <hr>
         <!-- 댓글 Component -->

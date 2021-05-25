@@ -119,10 +119,10 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
 
 .feeling {
     transition-duration: 2s; 
     font-family: 'Hi Melody', cursive;
-  }
+  } */
 </style>

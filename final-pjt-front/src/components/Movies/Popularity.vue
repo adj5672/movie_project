@@ -1,7 +1,7 @@
 <template>
   <div style="margin-bottom: 5rem;">
     <h1 class="my-auto">인기 TOP 10</h1>
-    <carousel-3d v-if="popularity.length" :autoplay=true :autoplayTimeout=5000 :display=7 :space=220 :width=210 :height=300 :controls-visible="true" @after-slide-change="movieIndex">
+    <carousel-3d v-if="popularity.length" class="my-auto" :autoplay=true :autoplayTimeout=5000 :display=7 :space=280 :width=245 :height=350 :controls-visible="true" @after-slide-change="movieIndex">
       <slide v-for="(movie, i) in popularity" :index="i" :key="i" class="rounded-3 border">
         <div class="position-relative" style="height: 100%;">
           <PopularityCarousel style="cursor: pointer" :movie="movie" :index="i" :centerIndex="centerIndex" @updateMyMovies="updateMyMovies"/>

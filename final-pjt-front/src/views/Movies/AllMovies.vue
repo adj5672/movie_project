@@ -46,5 +46,6 @@ export default {
 #AllMovies h1 {
   font-family: 'Do Hyeon', sans-serif;
   font-weight: bold;
+  color: black;
 }
 </style>

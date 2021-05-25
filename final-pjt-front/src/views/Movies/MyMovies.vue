@@ -1,5 +1,5 @@
 <template>
-  <div id="MyMovies">
+  <div id="MyMovies" style="margin-left: 15%; margin-right: 15%;">
     <h1 class="display-3"><i class="el-icon-video-camera-solid"></i> 나만의 영화</h1>
     <br>
     <div class="row row-cols-4 g-4" style="margin-left: 4rem; margin-right: 4rem;">

@@ -3,10 +3,9 @@
     :title="''"
     :visible.sync="$store.state.centerDialogVisible"
     :before-close="handleClose"
-    width="90%"
+    width="1100px"
     center
-    id="MovieDetail"
-    style="min-width: 1120px;">
+    id="MovieDetail">
     <div class="px-5">
       <!-- 영화 포스터 및 소개 카드 -->
       <div class="d-flex" style="height: 500px">
@@ -19,7 +18,7 @@
           <div>
             <div class="d-flex">
               <div class="d-flex align-items-center">
-                <h1 class="my-auto fw-bold" id="MovieTitle" style="color: black">{{ movie.title }}</h1>
+                <h1 class="my-auto fw-bold SansBold" id="MovieTitle" style="color: black">{{ movie.title }}</h1>
                 <div>
                   <button class="btn" v-if="$store.state.selectedMovie.isLike" @click="likeMovie"><font-awesome-icon style="color:crimson;" size="lg" :icon="['fas','heart']"/></button>
                   <el-tooltip v-else content="나만의 영화에 추가하세요" placement="bottom" effect="light">
@@ -29,9 +28,9 @@
               </div>
             </div>
             <div class="d-flex align-items-center my-2">
-              <span>{{ movie.release_date }}</span>
+              <span class="Jua">{{ movie.release_date }}</span>
               <div class="mx-3">
-                <span v-for="(genre, idx) in movie.genres" :key="idx" class="me-2 fw-bold text-primary">#{{ genre.name }}</span>
+                <span v-for="(genre, idx) in movie.genres" :key="idx" class="Jua me-2 fw-bold text-primary">#{{ genre.name }}</span>
               </div>
             </div>
             <el-rate
@@ -42,11 +41,11 @@
               class="my-2"
             >
             </el-rate>
-            <h5 class="fw-bold mt-3">줄거리</h5>
-            <p v-if="movie.overview">{{ movie.overview }}</p>
-            <p v-else style="font-style: italic;">해당 영화는 줄거리가 없습니다...</p>
+            <h5 class="Jua fw-bold mt-3">줄거리</h5>
+            <p v-if="movie.overview" class="Sans">{{ movie.overview }}</p>
+            <p v-else class="Sans" style="font-style: italic;">해당 영화는 줄거리가 없습니다...</p>
           </div>
-          <p class="my-0" id="mostTag"><span class="fs-5 p-1 fw-bold">{{ movie.review_cnt }}</span>명 중에 "<span class="fs-5 p-1 fw-bold" style="color:orange">{{ movie.tag_count }}</span>"명의 사람들이 이 영화를 보고 <span class="p-1 fs-5 fw-bold" style="color:orange">#{{ movie.most_tag }}</span>을 느꼈습니다.</p>
+          <p class="my-0" id="mostTag"><span class="Sans fs-5 p-1 fw-bold">{{ movie.review_cnt }}</span>명 중에 "<span class="Sans fs-5 p-1 fw-bold" style="color:orange">{{ movie.tag_count }}</span>"명의 사람들이 이 영화를 보고 <span class="Sans p-1 fs-5 fw-bold" style="color:orange">#{{ movie.most_tag }}</span>을 느꼈습니다.</p>
         </div>
       </div>
       <hr>
@@ -55,7 +54,7 @@
         <!-- 리뷰 작성-->
         <div v-show="isCreate">
           <div class="d-flex justify-content-between my-2 align-items-center">
-            <h3 class="fw-bold my-auto">리뷰 작성</h3>
+            <h3 class="Sans fw-bold my-auto">리뷰 작성</h3>
             <el-button type="text" class="mx-3 text-dark" size="medium" @click="isCreate = !isCreate">X</el-button>
           </div>
           <CreateReview @is-create="writeReview"/>
@@ -63,8 +62,8 @@
         </div>
         <!-- 영화에 달린 리뷰들 -->
         <div class="d-flex align-items-center justify-content-between mb-3">
-          <h3 class="fw-bold my-auto me-4">이 영화의 리뷰 ({{ movie.review_cnt }})</h3>
-          <el-button style="font-size: 1.1rem; font-weight: bold;" @click="isCreate = !isCreate"><i class="el-icon-document"></i> 리뷰 작성</el-button>
+          <h3 class="Sans fw-bold my-auto me-4">이 영화의 리뷰 ({{ movie.review_cnt }})</h3>
+          <el-button class="Sans" style="font-size: 1.1rem; font-weight: bold;" @click="isCreate = !isCreate"><i class="el-icon-document"></i> 리뷰 작성</el-button>
         </div>
         <p v-if="!reviews.length">아직 리뷰가 없습니다. 처음으로 리뷰를 작성해보세요...</p>
         <div v-else>
@@ -159,14 +158,19 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
 
-#mostTag {
+.Sans {
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 400;
 }
 
-#MovieTitle {
+.SansBold {
   font-family: 'Noto Sans KR', sans-serif;
   font-weight: 900;
+}
+
+.Jua {
+  font-family: 'Jua', sans-serif;
 }
 </style>

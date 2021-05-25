@@ -3,7 +3,7 @@
     <el-dialog
       title=""
       :visible.sync="$store.state.commentDialogVisible"
-      width="90%"
+      width="900px"
       center
       style="min-width: 350px;">
       <div class="container">

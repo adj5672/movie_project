@@ -18,7 +18,7 @@
       <el-input type="textarea" v-model="form.content" :autosize="{ minRows: 6, maxRows: 6}"></el-input>
     </el-form-item>
     <el-form-item class="w-100 d-flex justify-content-end">
-      <el-button type="primary" @click="createReview">작성</el-button>
+      <el-button class="Sans" type="primary" @click="createReview">작성</el-button>
     </el-form-item>
   </el-form>
 </template>

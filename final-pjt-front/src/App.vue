@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav" class="d-flex justify-content-between align-items-center bg-white"  style="padding-left: 15%; padding-right: 15%; z-index: 1;">
       <div class="d-flex align-items-center">
-        <img src="@/assets/logo.png" alt="logo" style="height: 80px;" class="me-4">
+        <img src="@/assets/logo.png" alt="logo" style="height: 100px;" class="me-4">
         <router-link class="mx-3" :to="{ name: 'AllMovies' }">전체영화</router-link>
         <router-link class="mx-3" :to="{ name: 'RecommandMovies' }">추천영화</router-link>
       </div>

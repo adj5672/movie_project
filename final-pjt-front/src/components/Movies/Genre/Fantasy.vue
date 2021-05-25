@@ -1,7 +1,7 @@
 <template>
   <div style="margin-bottom: 5rem;">
     <h1>판타지 영화 <img src="@/assets/genreIcons/fantasy.png" alt="icon" style="height: 3rem;"></h1>
-    <carousel-3d v-if="fantasy.length" :autoplay=true :autoplayTimeout=5000 :display=7 :space=220 :width=210 :height=300 :controls-visible="true" @after-slide-change="movieIndex">
+    <carousel-3d v-if="fantasy.length" class="my-auto" :autoplay=true :autoplayTimeout=5000 :display=7 :space=280 :width=245 :height=350 :controls-visible="true" @after-slide-change="movieIndex">
       <slide v-for="(movie, i) in fantasy" :index="i" :key="i" class="rounded-3 border">
         <div class="position-relative" style="height: 100%;">
           <FantasyCarousel style="cursor: pointer" :movie="movie" :index="i" :centerIndex="centerIndex" @updateMyMovies="updateMyMovies"/>
