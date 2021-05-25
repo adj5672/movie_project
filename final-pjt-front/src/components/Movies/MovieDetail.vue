@@ -124,6 +124,10 @@ export default {
   methods: {
     likeMovie: function () {
       this.$store.dispatch('likeMovie', this.movie)
+        .catch((error) => {
+          console.log(error)
+          this.$message.error('Oops, this is a error message.')
+        })
     },
     movePage: function (page) {
       this.page = page

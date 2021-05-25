@@ -72,6 +72,7 @@ export default {
     logout: function () {
       this.drawer = false
       localStorage.removeItem('jwt')
+      this.$router.push('/')
       this.$store.dispatch('logOut')
     },
     myMovies: function () {
