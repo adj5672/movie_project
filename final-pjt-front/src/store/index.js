@@ -26,6 +26,7 @@ export default new Vuex.Store({
     selectedMovie : {},
     selectedReview : {},
     selectedComment : {},
+    selectedColor: '',
     reviews: [],
     // User 정보
     userId: null,

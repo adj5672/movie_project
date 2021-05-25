@@ -1,15 +1,17 @@
 <template>
-  <div id="AllMovies" style="margin-left: 15%; margin-right: 15%;">
-    <Popularity/>
-    <Romance/>
-    <hr>
-    <Action/>
-    <hr>
-    <Fantasy/>
-    <hr>
-    <Horror/>
-    <hr>
-    <Comedy/>
+  <div>
+    <div class="container" id="AllMovies">
+      <Popularity/>
+      <Romance/>
+      <hr>
+      <Action/>
+      <hr>
+      <Fantasy/>
+      <hr>
+      <Horror/>
+      <hr>
+      <Comedy/>
+    </div>
   </div>
 </template>
 
@@ -31,11 +33,13 @@ export default {
     Horror,
     Comedy
   },
-  updated: function () {
-    this.$store.dispatch('getAllMovies')
-  },
   created: function () {
     this.$store.dispatch('getAllMovies')
+  },
+  computed: {
+    backgroundColor: function () {
+      return { 'background-color': `${this.$store.state.selectedColor}`}
+    }
   }
 }
 </script>
@@ -43,7 +47,7 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
-#AllMovies h1 {
+#AllMovies h3 {
   font-family: 'Do Hyeon', sans-serif;
   font-weight: bold;
 }

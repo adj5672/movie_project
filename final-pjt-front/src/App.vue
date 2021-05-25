@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="postion-absolute">
     <div id="nav" class="d-flex justify-content-between align-items-center px-5"  style="margin-left: 10%; margin-right: 10%;">
       <div class="d-flex align-items-center">
         <img src="@/assets/logo.png" alt="logo" style="height: 80px;" class="me-4">
@@ -52,7 +52,7 @@ export default {
     if (token) {
       this.$store.dispatch('logIn', token)
     }
-  }
+  },
 }
 </script>
 
@@ -66,6 +66,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   min-width: 1000px;
+  transition-duration: 2s;
 }
 
 #app input {
