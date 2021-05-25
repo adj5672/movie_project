@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav" class="d-flex justify-content-between align-items-center px-5 mx-5">
+    <div id="nav" class="d-flex justify-content-between align-items-center px-5"  style="margin-left: 10%; margin-right: 10%;">
       <div class="d-flex align-items-center">
         <img src="@/assets/logo.png" alt="logo" style="height: 80px;" class="me-4">
         <router-link class="mx-3" :to="{ name: 'AllMovies' }">전체영화</router-link>
@@ -8,8 +8,8 @@
       </div>
       <SideBar/>
     </div>
-    <router-view />
-    <MovieDetail @updateMyMovies="updateMyMovies" class="mb-5"/>
+    <router-view class="mb-5"/>
+    <MovieDetail @updateMyMovies="updateMyMovies"/>
     <ReviewDetail/>
     <CommentDetail/>
   </div>
