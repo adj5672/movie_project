@@ -1,7 +1,7 @@
 <template>
   <div class="my-3">
     <div class="mb-5">
-      <vue-feedback-reaction :labels="labels" v-model="value"/>
+      <vue-feedback-reaction :labels="labels" v-model="value" emojiWidth='60px' emojiHeight='60px' />
     </div>
     <h1 class="feeling fw-bold">이런 영화는 어떠세요?</h1>
     <carousel-3d class="p-3" v-if="$store.state.movies.tag_movies.length" :display=7 :space=250 :width=280 :height=400 :controls-visible="true" @after-slide-change="movieIndex">

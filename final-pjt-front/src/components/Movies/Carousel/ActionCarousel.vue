@@ -1,6 +1,9 @@
 <template>
-  <div style="height: 100%;">
-    <img :src="posterSrc" style="height: 100%;" @click="getDialog" @error="defaultImage">
+  <div class="box" @click="getDialog" style="height: 100%;">
+    <img class="image" :src="posterSrc" style="height: 100%;" @error="defaultImage">
+    <div class="overlay">
+      <div class="title">{{ movie.title }}</div>
+    </div>
   </div>
 </template>
 
@@ -44,5 +47,36 @@ export default {
 </script>
 
 <style>
+  .box {
+    position: relative;
+
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .3s ease;
+    background-color: #eeee;
+  }
+
+  .title {
+    color: black;
+    font: bold;
+    font-size: 25px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .box:hover .overlay {
+    opacity: 0.9;
+  }
 
 </style>
