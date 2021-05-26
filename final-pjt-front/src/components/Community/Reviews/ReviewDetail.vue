@@ -98,11 +98,12 @@ export default {
     deleteReview: function() {
       axios({
         method: 'DELETE',
-        url: `http://127.0.0.1:8000/community/${this.$store.state.selectedMovie.id}/review/${this.review.id}/`,
+        url: `http://127.0.0.1:8000/community/${this.review.movie.id}/review/${this.review.id}/`,
         headers: this.$store.state.config,
       })
         .then(() => {
-          this.$store.dispatch('selectMovie', this.$store.state.selectedMovie)
+          this.$store.dispatch('selectMovie', this.review.movie)
+          this.$store.dispatch('getMyReviews')
           this.$store.state.reviewDialogVisible = false
         })
         .catch(err => {
@@ -113,12 +114,13 @@ export default {
     updateReview: function() {
       axios({
         method: 'PUT',
-        url: `http://127.0.0.1:8000/community/${this.$store.state.selectedMovie.id}/review/${this.review.id}/`,
+        url: `http://127.0.0.1:8000/community/${this.review.movie.id}/review/${this.review.id}/`,
         data: this.review,
         headers: this.$store.state.config,
       })
         .then(() => {
-          this.$store.dispatch('selectMovie', this.$store.state.selectedMovie)
+          this.$store.dispatch('selectMovie', this.review.movie)
+          this.$store.dispatch('getMyReviews')
           this.$store.state.reviewDialogVisible = false
         })
         .catch(err => {
