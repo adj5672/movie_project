@@ -1,7 +1,7 @@
 <template>
   <div id="Sidebar">
     <el-button type="text" @click="drawer = true">
-      <img src="@/assets/hamburger.png" alt="" style="height: 30px;">
+      <img src="@/assets/hamburger.png" alt="" style="height: 50px;">
     </el-button>
 
     <el-drawer

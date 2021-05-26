@@ -25,7 +25,7 @@ export default {
       centerIndex: 0,
       color: '#ffc168',
       value: 1,
-      labels: ['짜증나', '슬퍼요', '심심해', '기뻐요', '로맨스'],
+      labels: ['짜증나', '우울해', '심심해', '행복해', '사랑해'],
     }
   },
   components: {
