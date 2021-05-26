@@ -39,7 +39,7 @@ export default {
           this.$emit('close-drawer')
         })
         .catch(() => {
-          this.$message.error('입력 항목을 다시 확인해주세요.')
+          this.$message.error('입력 정보를 다시 확인해주세요.')
         })
     }
   }
