@@ -23,6 +23,7 @@
           </div>
         </el-form>
       </div>
+      {{ comment }}
     </el-dialog>
   </div>
 </template>
@@ -46,7 +47,20 @@ export default {
   },
   methods: {
     updateComment: function () {
-      this.$store.state.commentDialogVisible = false
+      axios({
+        method: 'PUT',
+        url: `http://127.0.0.1:8000/community/${this.$store.state.selectedMovie.id}/review/${this.$store.state.selectedReview.id}/comment/${this.comment.id}/`,
+        data: this.comment,
+        headers: this.$store.state.config
+      })
+        .then(() => {
+          this.$store.dispatch('selectReview', [this.$store.state.selectedMovie, this.$store.state.selectedReview])
+          this.$store.dispatch('getMyComments')
+          this.$store.state.commentDialogVisible = false
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
     deleteComment: function () {
       axios({
@@ -54,8 +68,7 @@ export default {
         url: `http://127.0.0.1:8000/community/${this.$store.state.selectedMovie.id}/review/${this.$store.state.selectedReview.id}/comment/${this.comment.id}/`,
         headers: this.$store.state.config
       })
-        .then(res => {
-          console.log(res)
+        .then(() => {
           this.$store.dispatch('selectReview', [this.$store.state.selectedMovie, this.$store.state.selectedReview])
           this.$store.dispatch('getMyComments')
           this.$store.state.commentDialogVisible = false

@@ -37,6 +37,7 @@ class ReviewListSerializer(serializers.ModelSerializer):
 
 class CommentListSerializer(serializers.ModelSerializer):
 
+    user = UserSerializer(read_only=True)
     review = ReviewSerializer(read_only=True)
 
     class Meta:

@@ -63,7 +63,7 @@ export default {
   filters: {
     titleTruncate: function (text) {
       return _.truncate(text, {
-        'length': 25
+        'length': 20
       })
     },
     contentTruncate: function (text) {

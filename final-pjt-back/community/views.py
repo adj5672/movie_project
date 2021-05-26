@@ -58,16 +58,21 @@ def review(request, movie_id, review_id):
             serializer.save(review=review, user=request.user)
             return Response(serializer.data)
 
-@api_view(['PUT', 'DELETE', ])
+@api_view(['GET', 'PUT', 'DELETE', ])
 def comment(request, movie_id, review_id, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
+    # 댓글 조회
+    if request.method == 'GET':
+        serializer = CommentListSerializer(comment)
+        return Response(serializer.data)
+    
     # 댓글 삭제
-    if request.method == 'DELETE':
+    elif request.method == 'DELETE':
         comment.delete()
         return Response({'pk': f'{comment_id}번 댓글이 삭제되었습니다.'}, status=status.HTTP_204_NO_CONTENT)
     
     # 댓글 수정
-    if request.method == 'PUT':
+    elif request.method == 'PUT':
         serializer = CommentSerializer(comment, data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
