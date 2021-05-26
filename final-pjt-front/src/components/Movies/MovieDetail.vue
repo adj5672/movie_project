@@ -18,11 +18,11 @@
           <div>
             <div class="d-flex">
               <div class="d-flex align-items-center">
-                <h1 class="my-auto fw-bold SansBold" id="MovieTitle" style="color: black">{{ movie.title }}</h1>
+                <h1 class="my-1 fw-bold SansBold" id="MovieTitle" style="color: black">{{ movie.title }}</h1>
                 <div v-show="$store.state.isLogin">
-                  <button class="btn" v-if="$store.state.selectedMovie.isLike" @click="likeMovie"><font-awesome-icon style="color:crimson;" size="lg" :icon="['fas','heart']"/></button>
+                  <el-button type="text" class="ms-3" v-if="$store.state.selectedMovie.isLike" @click="likeMovie"><font-awesome-icon style="color:crimson;" size="lg" :icon="['fas','heart']"/></el-button>
                   <el-tooltip v-else content="나만의 영화에 추가하세요" placement="bottom" effect="light">
-                    <button class="btn" @click="likeMovie"><font-awesome-icon size="lg" :icon="['far','heart']"/></button>
+                    <el-button type="text" class="ms-3" @click="likeMovie"><font-awesome-icon size="lg" :icon="['far','heart']"/></el-button>
                   </el-tooltip>
                 </div>
               </div>
