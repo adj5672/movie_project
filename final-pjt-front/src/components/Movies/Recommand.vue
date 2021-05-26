@@ -3,7 +3,7 @@
     <div class="mb-5">
       <vue-feedback-reaction :labels="labels" v-model="value" emojiWidth='60px' emojiHeight='60px' />
     </div>
-    <h1 class="feeling fw-bold">이런 영화는 어떠세요?</h1>
+    <h1 class="question display-5 fw-bold">이런 영화는 어떠세요?</h1>
     <carousel-3d class="p-3" v-if="$store.state.movies.tag_movies.length" :display=7 :space=250 :width=280 :height=400 :controls-visible="true" @after-slide-change="movieIndex">
       <slide v-for="(movie, i) in tagMovies" :index="i" :key="i" class="rounded-3 border">
         <TagCarousel :movie="movie" style="cursor: pointer" :index="i" :centerIndex="centerIndex"/>
@@ -119,10 +119,5 @@ export default {
 </script>
 
 <style>
-/* @import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
 
-.feeling {
-    transition-duration: 2s; 
-    font-family: 'Hi Melody', cursive;
-  } */
 </style>
