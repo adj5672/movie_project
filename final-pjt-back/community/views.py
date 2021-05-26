@@ -59,7 +59,7 @@ def review(request, movie_id, review_id):
             return Response(serializer.data)
 
 @api_view(['GET', 'PUT', 'DELETE', ])
-def comment(request, movie_id, review_id, comment_id):
+def comment(request, review_id, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
     # 댓글 조회
     if request.method == 'GET':

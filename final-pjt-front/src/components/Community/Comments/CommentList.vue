@@ -31,7 +31,7 @@ export default {
     deleteComment: function () {
       axios({
         method: 'DELETE',
-        url: `http://127.0.0.1:8000/community/${this.$store.state.selectedMovie.id}/review/${this.$store.state.selectedReview.id}/comment/${this.comment.id}/`,
+        url: `http://127.0.0.1:8000/community/review/${this.$store.state.selectedReview.id}/comment/${this.comment.id}/`,
         headers: this.$store.state.config
       })
         .then(res => {
@@ -43,7 +43,14 @@ export default {
         })
     },
     commentDetail: function () {
-      this.$store.dispatch('selectComment', this.comment)
+      axios({
+        method: 'GET',
+        url: `http://127.0.0.1:8000/community/review/${this.comment.review}/comment/${this.comment.id}/`
+      })
+        .then(res => {
+          const comment_detail = res.data
+          this.$store.dispatch('selectComment', comment_detail)
+        })
       this.$store.state.commentDialogVisible = true
     }
   },
