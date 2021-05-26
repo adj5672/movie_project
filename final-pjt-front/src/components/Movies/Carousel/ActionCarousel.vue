@@ -106,6 +106,7 @@ export default {
   .box:hover .overlay {
     opacity: 0.8;
   }
+  
   .Sans {
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 400;
