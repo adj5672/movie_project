@@ -11,7 +11,7 @@ from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
-API_KEY = '28d059b233996387ca26ecda76d580cb'
+API_KEY = process.env.VUE_APP_API_KEY
 
 @api_view(['GET'])
 def seeding(request):
