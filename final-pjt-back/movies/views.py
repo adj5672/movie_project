@@ -6,12 +6,14 @@ from .serializers import MovieSerializers
 import requests
 from .models import Movie
 from django.db.models import Count, Q, Avg
+import os
 
 from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
-API_KEY = '28d059b233996387ca26ecda76d580cb'
+
+API_KEY = os.environ.get("DJANGO_APP_API_KEY")
 
 @api_view(['GET'])
 def seeding(request):
