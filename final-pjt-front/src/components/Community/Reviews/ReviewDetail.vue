@@ -104,10 +104,15 @@ export default {
         .then(() => {
           this.$store.dispatch('selectMovie', this.review.movie)
           this.$store.dispatch('getMyReviews')
+          this.$message({
+            message: '리뷰가 성공적으로 삭제되었습니다.',
+            type: 'success'
+          })
           this.$store.state.reviewDialogVisible = false
         })
         .catch(err => {
           console.log(err)
+          this.$message.error('리뷰 삭제에 실패하였습니다...')
         })
     },
     // 리뷰 수정
@@ -121,10 +126,15 @@ export default {
         .then(() => {
           this.$store.dispatch('selectMovie', this.review.movie)
           this.$store.dispatch('getMyReviews')
+          this.$message({
+            message: '리뷰가 성공적으로 수정되었습니다.',
+            type: 'success'
+          })
           this.$store.state.reviewDialogVisible = false
         })
         .catch(err => {
           console.log(err)
+          this.$message.error('리뷰 수정에 실패하였습니다...')
         })
     }
   },

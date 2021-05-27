@@ -57,7 +57,7 @@
             <h3 class="Sans fw-bold my-auto">리뷰 작성</h3>
             <el-button type="text" class="mx-3 text-dark" size="medium" @click="isCreate = !isCreate">X</el-button>
           </div>
-          <CreateReview @is-create="writeReview"/>
+          <CreateReview @is-create="writeReview" @is-error="writeError"/>
           <hr>
         </div>
         <!-- 영화에 달린 리뷰들 -->
@@ -134,9 +134,12 @@ export default {
     writeReview: function () {
       this.isCreate = !this.isCreate
       this.$message({
-          message: '성공적으로 리뷰가 작성되었습니다.',
+          message: '리뷰가 성공적으로 작성되었습니다.',
           type: 'success'
       })
+    },
+    writeError: function () {
+      this.$message.error('입력 항목을 다시 확인해주세요.');
     },
     handleClose: function (done) {
       done()

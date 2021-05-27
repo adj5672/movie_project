@@ -30,14 +30,15 @@ export default {
         .then(() => {
           this.$store.dispatch('selectReview', [this.$store.state.selectedMovie, this.$store.state.selectedReview])
           this.$message({
-          message: '댓글이 작성되었습니다.',
-          type: 'success'
-        });
+            message: '댓글이 작성되었습니다.',
+            type: 'success'
+          })
+          this.form.content = null
         })
         .catch(err => {
           console.log(err)
+          this.$message.error('입력 항목을 다시 확인해주세요.')
         })
-      this.form.content = null
     }
   }
 }

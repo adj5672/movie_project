@@ -55,10 +55,15 @@ export default {
         .then(() => {
           this.$store.dispatch('selectReview', [this.comment.review.movie, this.comment.review])
           this.$store.dispatch('getMyComments')
+          this.$message({
+            message: '댓글이 성공적으로 수정되었습니다.😀',
+            type: 'success'
+          })
           this.$store.state.commentDialogVisible = false
         })
         .catch(err => {
           console.log(err)
+          this.$message.error('댓글 수정에 실패하였습니다..😥')
         })
     },
     deleteComment: function () {
@@ -70,10 +75,15 @@ export default {
         .then(() => {
           this.$store.dispatch('selectReview', [this.comment.review.movie, this.comment.review])
           this.$store.dispatch('getMyComments')
+          this.$message({
+            message: '댓글이 성공적으로 삭제되었습니다.😀',
+            type: 'success'
+          })
           this.$store.state.commentDialogVisible = false
         })
         .catch(err => {
           console.log(err)
+          this.$message.error('댓글 삭제에 실패하였습니다..😥')
         })
     },
   }

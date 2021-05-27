@@ -49,16 +49,16 @@ export default {
         .then(() => {
           this.$store.dispatch('selectMovie', this.$store.state.selectedMovie)
           this.$emit('is-create')
+          this.form = {
+            rank: 0,
+            tags: '기쁨',
+            title: null,
+            content: null,
+          }
         })
-        .catch(err => {
-          console.log(err)
+        .catch(() => {
+          this.$emit('is-error')
         })
-      this.form = {
-      rank: 0,
-      tags: '기쁨',
-      title: null,
-      content: null,
-      }
     }
   }
 }
