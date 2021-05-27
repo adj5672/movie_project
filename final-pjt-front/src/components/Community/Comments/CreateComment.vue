@@ -29,6 +29,10 @@ export default {
       })
         .then(() => {
           this.$store.dispatch('selectReview', [this.$store.state.selectedMovie, this.$store.state.selectedReview])
+          this.$message({
+          message: '댓글이 작성되었습니다.',
+          type: 'success'
+        });
         })
         .catch(err => {
           console.log(err)

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav" class="d-flex justify-content-between align-items-center bg-white"  style="padding-left: 15%; padding-right: 15%; z-index: 1;">
+    <div id="nav" class="d-flex justify-content-between align-items-center bg-white"  style="padding-left: 15%; padding-right: 15%;">
       <div class="d-flex align-items-center">
         <img src="@/assets/logo.png" alt="logo" style="height: 130px;" class="me-4">
         <router-link class="mx-3" :to="{ name: 'AllMovies' }">전체영화</router-link>
@@ -8,10 +8,13 @@
       </div>
       <SideBar/>
     </div>
-    <router-view class="mb-5"/>
+    <router-view/>
     <MovieDetail @updateMyMovies="updateMyMovies"/>
     <ReviewDetail/>
     <CommentDetail/>
+    <div id="footer" class="border-top" style="margin-left: 15%; margin-right: 15%;">
+      <h6 class="text-center py-3">Copyright ⓒ An 2021. All Rights Reserved</h6>
+    </div>
   </div>
 </template>
 
@@ -89,8 +92,7 @@ export default {
   color: red;
 }
 
-.asd {
-  z-index: inherit;
-  z-index: initial;
+#footer h6 {
+  font-family: 'Jua', sans-serif;;
 }
 </style>

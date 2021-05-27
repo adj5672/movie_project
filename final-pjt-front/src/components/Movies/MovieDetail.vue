@@ -22,7 +22,7 @@
                 <div v-show="$store.state.isLogin">
                   <el-button type="text" class="ms-3" v-if="$store.state.selectedMovie.isLike" @click="likeMovie"><font-awesome-icon style="color:crimson;" size="lg" :icon="['fas','heart']"/></el-button>
                   <el-tooltip v-else content="나만의 영화에 추가하세요" placement="bottom" effect="light">
-                    <el-button type="text" class="ms-3" @click="likeMovie"><font-awesome-icon size="lg" :icon="['far','heart']"/></el-button>
+                    <el-button type="text" class="ms-3 text-danger" @click="likeMovie"><font-awesome-icon size="lg" :icon="['far','heart']"/></el-button>
                   </el-tooltip>
                 </div>
               </div>

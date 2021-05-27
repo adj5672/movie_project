@@ -43,7 +43,7 @@
         <el-form v-else>
           <div class="d-flex justify-content-between">
             <h3 class="my-auto fw-bold Jua">{{ review.title }}</h3>
-            <div>
+            <div class="d-flex flex-column ms-4" style="min-width: 140px;">
               <div class="Sans">작성 : {{ createdAt }}</div>
               <div class="Sans">수성 : {{ updatedAt }}</div>
             </div>

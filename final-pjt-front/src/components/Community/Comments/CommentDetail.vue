@@ -7,7 +7,7 @@
       center
       style="min-width: 350px;">
       <div class="container">
-        <h1>댓글 수정</h1>
+        <h1 class="Sans">댓글 수정</h1>
         <hr>
         <el-form ref="form" :model="comment" label-width="120px" labelPosition="left">
           <el-input type="textarea" v-model="comment.content"></el-input>
