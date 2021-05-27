@@ -1,6 +1,6 @@
 <template>
   <div style="margin-bottom: 5rem;">
-    <h1>코메디 영화 <img src="@/assets/genreIcons/comedy.png" alt="icon" style="height: 3rem;"></h1>
+    <h1>코미디 영화 <img src="@/assets/genreIcons/comedy.png" alt="icon" style="height: 3rem;"></h1>
     <carousel-3d v-if="comedy.length" :autoplay=true class="my-auto" :autoplayTimeout=5000 :display=7 :space=280 :width=245 :height=350 :controls-visible="true" @after-slide-change="movieIndex">
       <slide v-for="(movie, i) in comedy" :index="i" :key="i" class="rounded-3 border">
         <div class="position-relative" style="height: 100%;">
